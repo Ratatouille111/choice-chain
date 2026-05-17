@@ -3,17 +3,17 @@ export interface Module {
   character: string;
   characterEmoji: string;
   title: string;
-  hook: string;
+  icon: string;
   color: [string, string];
   accent: string;
   scenario: string;
-  choices: string[];
+  choices: { text: string; emoji: string }[];
   feedback: {
+    emoji: string;
     title: string;
     body: string;
-    insight: string;
     stars: number;
-    whyNot3Stars?: string;
+    hint?: string;
   }[];
 }
 
@@ -22,36 +22,36 @@ export const MODULES: Module[] = [
     id: 1,
     character: "Robot Ricky",
     characterEmoji: "🤖",
-    title: "The Watching Cameras",
-    hook: "Who's watching and why does it matter?",
+    title: "Watching Cameras",
+    icon: "📹",
     color: ["#1e3a5f", "#2d5a87"],
     accent: "#5ce1e6",
-    scenario: "Your school wants to put cameras everywhere - in hallways, classrooms, and even the playground - to keep everyone safe. But some kids feel weird about being watched all the time. What do you think the school should do?",
+    scenario: "Your school wants to put cameras EVERYWHERE to catch bullies. But some kids feel weird being watched all the time.",
     choices: [
-      "Put cameras everywhere! Safety is super important, and cameras help catch bullies and keep everyone safe.",
-      "Put cameras only in some places like the entrance and hallways, but not in classrooms or the playground.",
-      "Don't use cameras at all. Teachers and friends can help keep us safe without watching us all the time."
+      { text: "Cameras everywhere! Safety first!", emoji: "📹" },
+      { text: "Cameras at doors only, not in class", emoji: "🚪" },
+      { text: "No cameras! We can watch out for each other", emoji: "👀" }
     ],
     feedback: [
       {
-        title: "The Watchful Eye",
-        body: "Having cameras everywhere can help catch bad behavior and keep people safe. But when someone's always watching, it might make kids feel nervous or like they can't be themselves. It's like having a teacher follow you everywhere - even to recess!",
-        insight: "Safety goes up, but kids might feel less free to play and explore.",
+        emoji: "👁️",
+        title: "Always Watching",
+        body: "Cameras help catch bullies, but kids might feel nervous being watched ALL the time!",
         stars: 2,
-        whyNot3Stars: "Think about this: What if there was a way to be safe AND still have some places where you can just be yourself without cameras? Finding balance is the key!"
+        hint: "What if cameras were only at the entrance? Safe but not EVERYWHERE!"
       },
       {
-        title: "Finding the Middle Ground",
-        body: "Putting cameras only in some places means you get some safety help while still having spaces where kids can relax and be themselves. The entrance cameras can help keep strangers out, but the playground stays a free space to play!",
-        insight: "A balance between being safe and being free!",
+        emoji: "✨",
+        title: "Perfect Balance!",
+        body: "Cameras at doors keep strangers out, but you still have freedom in class and at recess!",
         stars: 3
       },
       {
-        title: "Trust and Teamwork",
-        body: "Without cameras, everyone works together to stay safe - teachers, students, and parents. It's harder to catch everything, but kids learn to look out for each other and solve problems together. That's called building a community!",
-        insight: "More freedom, but everyone has to help keep each other safe.",
+        emoji: "🤝",
+        title: "Teamwork!",
+        body: "Friends looking out for each other is nice! But cameras at doors could help with strangers.",
         stars: 2,
-        whyNot3Stars: "This is thoughtful! But what about keeping strangers out of school? Sometimes a few cameras at the entrance can help with that. Maybe there's a middle way?"
+        hint: "Maybe a few cameras at the entrance would help keep strangers out?"
       }
     ]
   },
@@ -59,36 +59,36 @@ export const MODULES: Module[] = [
     id: 2,
     character: "Nature Nina",
     characterEmoji: "🌱",
-    title: "More Stuff or More Trees?",
-    hook: "What really makes us happy?",
+    title: "Factory or Forest?",
+    icon: "🏭",
     color: ["#1a4d2e", "#2d6a4f"],
     accent: "#74c69d",
-    scenario: "A company wants to build a huge factory near your town. It will make lots of toys and gadgets, but it will also cut down a forest and use lots of water. Some people want the jobs, others want to save the forest. What should happen?",
+    scenario: "A company wants to cut down a forest to build a toy factory. People get jobs, but animals lose their home!",
     choices: [
-      "Build the factory! We'll get cool new toys and people will have jobs. We can plant new trees somewhere else.",
-      "Build a smaller factory that doesn't hurt the forest as much. Maybe make fewer things, but keep the trees too!",
-      "Don't build the factory. The forest is home to animals and helps clean our air. We have enough toys already!"
+      { text: "Build it! Jobs and toys are important!", emoji: "🏭" },
+      { text: "Build smaller, save half the forest!", emoji: "🌲" },
+      { text: "Don't build! Animals need their home!", emoji: "🦊" }
     ],
     feedback: [
       {
-        title: "More is More?",
-        body: "Factories give us lots of things we want and jobs for people to earn money. But cutting down forests means animals lose their homes, and we lose trees that clean our air and make oxygen for us to breathe. New trees take a loooong time to grow!",
-        insight: "We get more stuff, but nature gets smaller.",
+        emoji: "🧸",
+        title: "More Toys!",
+        body: "Jobs and toys are cool, but where will the deer and birds live?",
         stars: 2,
-        whyNot3Stars: "Good thinking about jobs! But those animals need their home too. Is there a way to get some jobs AND keep some forest? That might be the best of both worlds!"
+        hint: "Could we have SOME jobs AND keep SOME forest? Best of both worlds!"
       },
       {
-        title: "Sharing the Space",
-        body: "A smaller factory means we still get some new things and some jobs, but we also keep most of the forest! This is called finding a balance. The animals keep their home, and we still have nice things. Win-win!",
-        insight: "Some new things AND a healthy forest. Nice balance!",
+        emoji: "🎯",
+        title: "Win-Win!",
+        body: "Half for people, half for animals! Everyone gets something. That's sharing!",
         stars: 3
       },
       {
-        title: "Nature First",
-        body: "Keeping the forest means the animals stay safe, the air stays clean, and we have beautiful places to explore! But people who wanted jobs might be sad. Sometimes taking care of nature means saying no to some things we want.",
-        insight: "The planet stays healthy, but we have to be happy with what we have.",
+        emoji: "🦌",
+        title: "Nature First!",
+        body: "Animals keep their home! But some people really need those jobs...",
         stars: 2,
-        whyNot3Stars: "You really care about animals - that's awesome! But what about the people who need jobs? Maybe a smaller factory could help them AND save most of the forest?"
+        hint: "What about families who need work? Maybe a smaller factory could help them?"
       }
     ]
   },
@@ -96,34 +96,34 @@ export const MODULES: Module[] = [
     id: 3,
     character: "Wise Owl Omar",
     characterEmoji: "🦉",
-    title: "Let the Robot Decide?",
-    hook: "Who should make your choices?",
+    title: "App Knows Best?",
+    icon: "📱",
     color: ["#5a3921", "#7d5a3c"],
     accent: "#fbbf24",
-    scenario: "There's a new app that can pick your clothes, choose your lunch, suggest your friends, and even tell you what to study. It knows you really well and always picks things you'll probably like. Should kids use this app for everything?",
+    scenario: "A magic app wants to pick your lunch, your clothes, and even your friends! It says it knows what you'll like.",
     choices: [
-      "Yes! Let the app decide everything. It's smart and knows what I like. I won't make bad choices anymore!",
-      "Use the app for some things, like finding new books or games, but make my own choices about friends and important stuff.",
-      "No way! I want to make my own choices, even if I sometimes pick wrong. That's how I learn!"
+      { text: "Yes! Let the app choose everything!", emoji: "🤖" },
+      { text: "App for small stuff, I pick the big stuff!", emoji: "🎯" },
+      { text: "Nope! I want to choose for myself!", emoji: "🧠" }
     ],
     feedback: [
       {
-        title: "The Easy Button",
-        body: "When an app makes all your choices, life seems easier. But here's the thing: making choices - even wrong ones - is how your brain learns and grows! If you never practice choosing, how will you know what YOU really like?",
-        insight: "Fewer mistakes, but also fewer chances to discover who you really are.",
+        emoji: "😴",
+        title: "Easy Mode",
+        body: "No mistakes... but how will you learn what YOU really like?",
         stars: 2,
-        whyNot3Stars: "It sounds nice to never make mistakes! But your brain is like a muscle - it gets stronger when you use it. Maybe use the app for small stuff but make big choices yourself?"
+        hint: "Your brain gets stronger when YOU make choices. Maybe use the app just for small things?"
       },
       {
-        title: "Best of Both Worlds",
-        body: "Using the app for small stuff (like finding a new book) saves time. But making big choices yourself (like who to be friends with) helps your brain grow stronger. It's like using training wheels sometimes but also riding on your own!",
-        insight: "Smart help when you need it, real learning when it matters!",
+        emoji: "💪",
+        title: "Smart Thinking!",
+        body: "Let the app help with small stuff, but YOU decide the important things!",
         stars: 3
       },
       {
-        title: "Learning by Doing",
-        body: "Making your own choices - even the wrong ones - teaches you about yourself. Every mistake is actually a lesson! You might pick a food you don't like, but then you KNOW you don't like it. That's wisdom you earned yourself!",
-        insight: "More mistakes, but way more learning and growing!",
+        emoji: "🌟",
+        title: "Independence!",
+        body: "You learn from your choices - even mistakes! That makes you wiser.",
         stars: 3
       }
     ]
@@ -133,35 +133,35 @@ export const MODULES: Module[] = [
     character: "Caring Clara",
     characterEmoji: "💝",
     title: "Robot Nurses?",
-    hook: "Can a robot really care about you?",
+    icon: "🏥",
     color: ["#4a1942", "#6b2d5c"],
     accent: "#f472b6",
-    scenario: "A hospital wants to use friendly robots to help take care of sick kids. The robots can check temperatures, bring medicine, and tell jokes. But they can't give real hugs or truly understand how you feel. Should robots help take care of sick kids?",
+    scenario: "Hospitals want to use robots to help sick kids. Robots never forget medicine, but they can't give real hugs!",
     choices: [
-      "Replace all the nurses with robots! They never get tired and always remember the medicine. Plus, they tell funny jokes!",
-      "Have robots help the nurses with boring tasks so the nurses have more time to talk and play with sick kids.",
-      "No robots in hospitals! When you're sick, you need real people who can hug you and really understand how you feel."
+      { text: "All robots! They never make mistakes!", emoji: "🤖" },
+      { text: "Robots help, humans hug!", emoji: "🤝" },
+      { text: "No robots! Only real people!", emoji: "💕" }
     ],
     feedback: [
       {
-        title: "Robo-Care",
-        body: "Robots are great at remembering things and working all day without getting tired. But when you're sick and scared, a robot's joke isn't the same as a real person holding your hand. Robots can DO things for you, but can they really CARE about you?",
-        insight: "Perfect medicine timing, but no warm hugs when you're sad.",
+        emoji: "⚙️",
+        title: "Robot Care",
+        body: "Robots don't forget medicine, but when you're scared, a robot joke isn't the same as a real hug!",
         stars: 2,
-        whyNot3Stars: "Robots are pretty cool! But when you're sick and scared, don't you want a real person to comfort you? What if robots just helped the nurses instead of replacing them?"
+        hint: "What if robots did the boring stuff so nurses had MORE time to hug you?"
       },
       {
-        title: "Teamwork Makes the Dream Work",
-        body: "When robots handle the boring stuff (counting pills, taking temperatures), nurses have more time for the important stuff - like sitting with you when you're scared, reading you stories, or calling your mom. The robots help the humans help YOU!",
-        insight: "Robots do the boring work, humans do the heart work!",
+        emoji: "❤️",
+        title: "Perfect Team!",
+        body: "Robots do the medicine stuff, nurses have more time for hugs and stories!",
         stars: 3
       },
       {
-        title: "All Human Care",
-        body: "Real people can see when you're sad even if you don't say anything. They give the best hugs and really listen. But nurses get tired and can forget things. Without robot help, they might have less time for each kid.",
-        insight: "All the warmth and love, but nurses have a lot to do!",
+        emoji: "🫂",
+        title: "Human Touch",
+        body: "Real hugs are the best! But nurses have SO much work. Robots could help them!",
         stars: 2,
-        whyNot3Stars: "Human hugs are the best! But nurses have SO much to do. What if robots helped with boring tasks so nurses have MORE time to give hugs and play games?"
+        hint: "What if robots helped with boring tasks so nurses could spend MORE time with you?"
       }
     ]
   },
@@ -169,36 +169,36 @@ export const MODULES: Module[] = [
     id: 5,
     character: "Future Finn",
     characterEmoji: "🚀",
-    title: "Super Smart Machines",
-    hook: "What if robots become smarter than us?",
+    title: "Super Smart Robots",
+    icon: "🧠",
     color: ["#3d1010", "#5c2020"],
     accent: "#f87171",
-    scenario: "Scientists are building robots that learn and get smarter every day. Someday they might be smarter than humans! They could solve big problems like diseases, but they might also not need humans anymore. Should we keep making them smarter?",
+    scenario: "Scientists are making robots smarter and smarter! They might cure diseases... but what if they get smarter than us?",
     choices: [
-      "Make them as smart as possible! Super-smart robots could cure diseases and solve all our problems. The smarter, the better!",
-      "Keep making them smarter, but add special rules so humans always stay in charge. Like a robot off-switch!",
-      "Stop making them smarter right now. Robots should be our helpers, not our bosses. Some things are too risky!"
+      { text: "Make them super smart! Solve all problems!", emoji: "🚀" },
+      { text: "Smart robots, but with an OFF switch!", emoji: "🔘" },
+      { text: "Stop! Robots should stay our helpers!", emoji: "✋" }
     ],
     feedback: [
       {
-        title: "Unlimited Power!",
-        body: "Super-smart robots could solve problems humans can't even understand! But here's a tricky question: if a robot is way smarter than us, will it still listen to us? It's like asking your teacher to follow your rules - would that work?",
-        insight: "Amazing possibilities, but we might lose control.",
+        emoji: "🤯",
+        title: "Super Power!",
+        body: "Super-smart robots could do amazing things! But if they're smarter than us, will they still listen?",
         stars: 2,
-        whyNot3Stars: "Super-smart robots sound amazing! But if they're smarter than us, how do we make sure they still do what we want? Maybe we need some safety rules first?"
+        hint: "What if we made them smart BUT added safety rules? Like a car with good brakes!"
       },
       {
-        title: "Smart but Safe",
-        body: "Making robots smarter WITH safety rules is like driving a fast car with good brakes. You get the speed (smart robots!) but can stop if needed. The key is making sure the safety rules actually work!",
-        insight: "Keep the benefits, but don't forget the emergency stop button!",
+        emoji: "🎮",
+        title: "Smart AND Safe!",
+        body: "Smart robots WITH an off switch! Like having superpowers but staying in control!",
         stars: 3
       },
       {
-        title: "Know When to Stop",
-        body: "Stopping now means we won't get all those amazing solutions. But it also means we definitely stay in charge. Sometimes the wisest choice is knowing when to say 'that's enough.' Not every adventure is worth the risk!",
-        insight: "Safer for sure, but we might miss out on big discoveries.",
+        emoji: "🤚",
+        title: "Play It Safe",
+        body: "Being careful is smart! But we might miss out on curing diseases...",
         stars: 2,
-        whyNot3Stars: "Being careful is smart! But what about all the good things smarter robots could do, like cure diseases? Maybe we can keep building them WITH safety rules?"
+        hint: "Maybe we can keep making them smarter, just with really good safety rules?"
       }
     ]
   },
@@ -207,33 +207,33 @@ export const MODULES: Module[] = [
     character: "Newsy Nadia",
     characterEmoji: "📱",
     title: "The Magic Feed",
-    hook: "Why does the app show you what it shows?",
+    icon: "✨",
     color: ["#0c3547", "#154c63"],
     accent: "#38bdf8",
-    scenario: "Social media apps learn what you like and only show you more of that. So if you like cat videos, you see MORE cats. If you like soccer, you see MORE soccer. But you stop seeing other stuff. Is this magic feed a good thing?",
+    scenario: "Your app only shows you cat videos because you love cats! But now you ONLY see cats and nothing else...",
     choices: [
-      "Yes! I love seeing exactly what I like. Why would I want to see stuff I don't like? Give me all the cat videos!",
-      "Show me mostly what I like, but also mix in some new things I've never seen before. I might discover something cool!",
-      "Show me everything, not just what I already like. I want to see what my friends with different interests are seeing too!"
+      { text: "Yay! All cats all the time!", emoji: "🐱" },
+      { text: "Mostly cats, but show me new stuff too!", emoji: "🎁" },
+      { text: "Show me everything, not just cats!", emoji: "🌍" }
     ],
     feedback: [
       {
-        title: "The Bubble",
-        body: "It feels great to see only things you love! But here's the thing: you might start thinking EVERYONE loves cats because that's all you see. Your world becomes a bubble where everything seems the same. You might miss out on discovering you also love dogs!",
-        insight: "Super fun, but your world gets smaller and smaller.",
+        emoji: "🐱",
+        title: "Cat Paradise!",
+        body: "Cats are great! But what if you also love dogs and never find out?",
         stars: 2,
-        whyNot3Stars: "Cat videos are awesome! But what if you ALSO love dogs and you never find out? A little variety helps you discover new favorites!"
+        hint: "A little variety might help you discover NEW favorites!"
       },
       {
-        title: "The Discovery Mix",
-        body: "Seeing mostly what you like PLUS some new stuff is like your favorite meal with a surprise side dish! You stay happy, but you also discover new things. Maybe you find out you love basketball too, not just soccer!",
-        insight: "Comfortable but still full of surprises!",
+        emoji: "🎉",
+        title: "Best Mix!",
+        body: "Your favorites PLUS surprises! You might discover you also love dogs... or penguins!",
         stars: 3
       },
       {
-        title: "The Big Picture",
-        body: "Seeing everything helps you understand the whole world, not just your little corner. You'll see some stuff you don't like, but you'll also understand your friends better. It's like visiting different countries instead of staying home!",
-        insight: "More variety, even if not everything is your favorite.",
+        emoji: "🌈",
+        title: "Big World!",
+        body: "Seeing everything helps you understand more! Even if not everything is your favorite.",
         stars: 3
       }
     ]
@@ -242,36 +242,36 @@ export const MODULES: Module[] = [
     id: 7,
     character: "Wild Wendy",
     characterEmoji: "🦋",
-    title: "City vs. Forest",
-    hook: "Where should animals live?",
+    title: "City or Forest?",
+    icon: "🏙️",
     color: ["#0f2d0f", "#1a4a1a"],
     accent: "#86efac",
-    scenario: "The mayor wants to build a new 'eco-city' with parks and solar panels. Sounds great! But they want to build it where a forest is now. The forest has deer, birds, and even some rare butterflies! What should the mayor do?",
+    scenario: "The mayor wants to build an eco-city with parks! But it's where butterflies and deer live now...",
     choices: [
-      "Build the eco-city! It will be good for the environment in new ways. The animals can move somewhere else.",
-      "Build a smaller city and keep half the forest. The animals and people can be neighbors!",
-      "Don't build anything! The forest is already the best home for those animals. They were there first!"
+      { text: "Build it! It's eco-friendly!", emoji: "🏗️" },
+      { text: "Build smaller, keep half the forest!", emoji: "🦋" },
+      { text: "Don't build! That's the animals' home!", emoji: "🏡" }
     ],
     feedback: [
       {
-        title: "New Beginnings",
-        body: "An eco-city sounds nice with its solar panels and parks. But a park isn't the same as a real forest! Those deer and butterflies need their REAL home with old trees and wild plants. When we say 'animals can move,' where exactly do they go?",
-        insight: "Shiny new city, but homeless animals.",
+        emoji: "🏢",
+        title: "New City!",
+        body: "Eco-cities are cool, but a park isn't the same as a REAL forest for butterflies!",
         stars: 2,
-        whyNot3Stars: "Eco-cities are cool! But those butterflies can't just pack up and move. What if we built a smaller city and kept their forest home too?"
+        hint: "What if we built a SMALLER city and kept the butterflies' home too?"
       },
       {
-        title: "Good Neighbors",
-        body: "Building LESS and saving half the forest means the rare butterflies can stay in their home while people get a nice (but smaller) place to live. The kids could even visit the forest to see real wildlife - like having a zoo that's not a zoo!",
-        insight: "Sharing the space like good neighbors do!",
+        emoji: "🤜🤛",
+        title: "Good Neighbors!",
+        body: "Half for people, half for animals! Kids can even visit the butterflies!",
         stars: 3
       },
       {
-        title: "Forest Forever",
-        body: "Keeping the whole forest means every single deer, bird, and butterfly keeps their home. The forest also cleans our air and gives us fresh water! But people who wanted to live in that nice eco-city will have to go somewhere else.",
-        insight: "Happy animals, but humans need to find another spot.",
+        emoji: "🌳",
+        title: "Forest Protected!",
+        body: "Animals are happy! But people need homes too...",
         stars: 2,
-        whyNot3Stars: "You have a big heart for animals! But people need homes too. What if we could share the space - some forest for animals, some city for people?"
+        hint: "Could we share the space? Some for us, some for animals?"
       }
     ]
   },
@@ -280,35 +280,35 @@ export const MODULES: Module[] = [
     character: "Science Sam",
     characterEmoji: "🧬",
     title: "Designer Babies?",
-    hook: "Should parents pick what their kids are like?",
+    icon: "👶",
     color: ["#0d4040", "#156565"],
     accent: "#5eead4",
-    scenario: "Scientists can now change tiny parts of babies before they're born. They can remove sickness, but some people want to also change eye color, height, or even make kids smarter! Should parents be allowed to design their babies?",
+    scenario: "Scientists can now prevent babies from getting sick! Some parents also want to pick eye color and height...",
     choices: [
-      "Let parents change anything they want! If you can make your kid healthier, smarter, and taller, why not?",
-      "Only allow changes that prevent sickness and diseases. No changing looks or making 'super babies.'",
-      "Don't change anything! Every baby should be born naturally, just the way they are. We shouldn't play around with this stuff."
+      { text: "Change everything! Make perfect babies!", emoji: "✨" },
+      { text: "Only fix sickness, nothing else!", emoji: "💊" },
+      { text: "Don't change anything! Nature knows best!", emoji: "🌿" }
     ],
     feedback: [
       {
-        title: "The Perfect Baby?",
-        body: "Changing everything sounds cool, but think about it: what if only rich families can afford 'super babies'? And what makes someone 'perfect' anyway? Your freckles, your curly hair, your unique brain - those 'imperfections' are what make you YOU!",
-        insight: "More 'perfect' babies, but is everyone's 'perfect' the same?",
+        emoji: "🤔",
+        title: "Perfect... But...",
+        body: "What makes someone 'perfect'? Your unique quirks make you YOU!",
         stars: 2,
-        whyNot3Stars: "Being healthy and smart sounds great! But what makes someone 'perfect'? Your unique quirks are what make you special! Maybe just fix sickness and let the rest be a surprise?"
+        hint: "Maybe just fix sickness and let everything else be a fun surprise?"
       },
       {
-        title: "Healthy is Enough",
-        body: "Removing sickness before birth could save babies from hurting! But stopping there means kids are still surprised by their eye color and personality. You're you, not something your parents ordered from a catalog!",
-        insight: "No more sickness, but you're still wonderfully YOU!",
+        emoji: "💖",
+        title: "Healthy AND Unique!",
+        body: "No sickness, but your eye color and personality are still a surprise! That's special!",
         stars: 3
       },
       {
-        title: "Nature Knows Best",
-        body: "Letting babies be born naturally means embracing surprises - the good and the challenging. Some babies might have health problems, but they'll be exactly who nature intended. Sometimes our differences make us strongest!",
-        insight: "Totally natural, but some health problems could have been prevented.",
+        emoji: "🌻",
+        title: "All Natural!",
+        body: "Nature makes amazing surprises! But some babies could be saved from getting sick...",
         stars: 2,
-        whyNot3Stars: "Nature is amazing! But what about babies who get really sick? If we could help them be healthy before they're born, wouldn't that be kind?"
+        hint: "What about babies who get really sick? We could help them AND keep the surprises!"
       }
     ]
   },
@@ -316,73 +316,73 @@ export const MODULES: Module[] = [
     id: 9,
     character: "Tiny Tech Tina",
     characterEmoji: "🔬",
-    title: "Invisible Machines",
-    hook: "Super tiny helpers... but are they safe?",
+    title: "Invisible Robots",
+    icon: "🔍",
     color: ["#3d3d00", "#5c5c00"],
     accent: "#fde047",
-    scenario: "Scientists created teeny-tiny robots (smaller than a grain of sand!) that could clean pollution, deliver medicine inside your body, or make super-strong materials. But we don't know yet if they're safe for humans and animals. Should we use them?",
+    scenario: "Scientists made teeny tiny robots (smaller than sand!) that could clean pollution! But we don't know if they're safe yet...",
     choices: [
-      "Use them everywhere! They could solve pollution and cure diseases! We'll figure out the safety stuff as we go.",
-      "Use them only in labs and hospitals with lots of testing first. Make sure they're safe before putting them everywhere.",
-      "Wait and don't use them at all yet. We don't know enough about what these tiny robots might do to nature and our bodies."
+      { text: "Use them everywhere! Clean the planet!", emoji: "🌍" },
+      { text: "Test them carefully first, then use them!", emoji: "🔬" },
+      { text: "Wait! We need to know they're safe!", emoji: "⏸️" }
     ],
     feedback: [
       {
-        title: "Tiny but Risky",
-        body: "These tiny robots could do amazing things! But because they're SO small, we can't really see what they do. What if they accidentally hurt good cells in your body or tiny animals in the ocean? Small things can cause big problems!",
-        insight: "Amazing possibilities, but we can't take back what we don't understand.",
+        emoji: "💨",
+        title: "Fast Action!",
+        body: "Cleaning pollution fast is great! But what if the tiny robots cause new problems?",
         stars: 2,
-        whyNot3Stars: "You're excited about cool technology - that's great! But we should probably test these tiny robots first to make sure they're safe. What if we tried them in labs before using them everywhere?"
+        hint: "What if we tested them really well first, THEN used them everywhere?"
       },
       {
-        title: "Test First, Wonder Later",
-        body: "Using tiny robots ONLY in safe places (like hospitals) means scientists can watch what happens. If something goes wrong, it's easier to stop. It's like trying a new food at home before eating it at a restaurant!",
-        insight: "Careful steps lead to confident leaps!",
+        emoji: "🧪",
+        title: "Smart Science!",
+        body: "Test first, then use! Like checking the water before you jump in the pool!",
         stars: 3
       },
       {
-        title: "Wait and See",
-        body: "Waiting means we don't get those cool benefits yet. But we also don't accidentally cause problems we can't fix. Sometimes being patient is the smartest thing to do, even when you're excited!",
-        insight: "Super safe, but we have to wait longer for the cool stuff.",
+        emoji: "⏳",
+        title: "Super Careful",
+        body: "Being safe is smart! But pollution keeps getting worse while we wait...",
         stars: 2,
-        whyNot3Stars: "Being careful is wise! But some people are really sick and need help now. What if we tested the tiny robots carefully in special places first?"
+        hint: "Testing them carefully could help us use them SAFELY and clean up faster!"
       }
     ]
   },
   {
     id: 10,
-    character: "Weather Wizard Wally",
-    characterEmoji: "🌍",
-    title: "Fixing the Weather?",
-    hook: "Should we try to control the sky?",
-    color: ["#1e3a5f", "#2d5a87"],
-    accent: "#67e8f9",
-    scenario: "Earth is getting hotter because of pollution. Some scientists want to spray special chemicals in the sky to cool the planet down, like a giant sunscreen for Earth! But nobody knows for sure what else it might do. Should we try it?",
+    character: "Weather Willow",
+    characterEmoji: "🌤️",
+    title: "Weather Machine",
+    icon: "⛅",
+    color: ["#1f3d4d", "#2d5a6a"],
+    accent: "#a5f3fc",
+    scenario: "Scientists built a giant machine that can change the weather! It could stop storms... but might mess up weather somewhere else!",
     choices: [
-      "Do it now! Earth is getting too hot and we need to cool it down fast. The chemicals will probably work great!",
-      "Research it carefully first, but focus mostly on making less pollution. Fix the cause, not just the symptom!",
-      "Don't mess with the sky at all! We should just stop polluting and let nature heal itself. Spraying stuff could make things worse!"
+      { text: "Turn it on! Fix the weather!", emoji: "☀️" },
+      { text: "Test it small first, then decide!", emoji: "🧪" },
+      { text: "Don't touch it! Weather is complicated!", emoji: "🌀" }
     ],
     feedback: [
       {
-        title: "Sky Experiment",
-        body: "Spraying stuff in the sky MIGHT cool Earth down. But the sky is connected to everything - rain, wind, seasons. What if it messes up rain in one country while fixing heat in another? The sky doesn't follow borders!",
-        insight: "Quick fix maybe, but nobody really knows what else could happen.",
+        emoji: "🎲",
+        title: "Risky!",
+        body: "Stopping storms here might cause floods somewhere else! Weather is all connected!",
         stars: 2,
-        whyNot3Stars: "You want to help Earth cool down - that's awesome! But spraying stuff in the sky is a big experiment. What if we focused on making less pollution while scientists study this more?"
+        hint: "What if we tested it small first to see what happens?"
       },
       {
-        title: "Fix the Real Problem",
-        body: "Earth is hot because of pollution. So the best fix is... less pollution! Learning about sky-spraying is okay as a backup plan, but riding bikes, using solar power, and planting trees actually solve the problem, not just cover it up.",
-        insight: "Treat the sickness, not just the fever!",
+        emoji: "🔬",
+        title: "Careful Testing!",
+        body: "Small tests first, then bigger if it's safe! That's how good science works!",
         stars: 3
       },
       {
-        title: "Let Nature Heal",
-        body: "Nature is really good at fixing itself... IF we stop hurting it! But healing takes a long time, and Earth is getting hot fast. Can we wait long enough for nature to recover on its own?",
-        insight: "The safest choice, but maybe not fast enough.",
+        emoji: "🌍",
+        title: "Don't Risk It",
+        body: "Playing it safe protects everyone! But what if we could learn to use it carefully?",
         stars: 2,
-        whyNot3Stars: "You trust nature - that's beautiful! But Earth is getting hotter pretty fast. Maybe we could stop polluting AND study backup plans, just in case nature needs a little help?"
+        hint: "Small tests could teach us if it's safe. We don't have to use it everywhere at once!"
       }
     ]
   }
