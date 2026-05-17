@@ -9,10 +9,19 @@ import { ResultScreen } from "./result-screen";
 
 type Screen = "home" | "modules" | "scenario" | "result";
 
+export interface PlayerProgress {
+  completedModules: number[];
+  totalStars: number;
+}
+
 export function ChoiceChainApp() {
   const [screen, setScreen] = useState<Screen>("home");
   const [activeModule, setActiveModule] = useState<Module | null>(null);
   const [choiceIdx, setChoiceIdx] = useState<number | null>(null);
+  const [progress, setProgress] = useState<PlayerProgress>({
+    completedModules: [],
+    totalStars: 0,
+  });
 
   const selectModule = (m: Module) => {
     setActiveModule(m);
@@ -22,6 +31,14 @@ export function ChoiceChainApp() {
   const handleChoose = (idx: number) => {
     setChoiceIdx(idx);
     setScreen("result");
+    
+    if (activeModule && !progress.completedModules.includes(activeModule.id)) {
+      const earnedStars = activeModule.feedback[idx].stars;
+      setProgress(prev => ({
+        completedModules: [...prev.completedModules, activeModule.id],
+        totalStars: prev.totalStars + earnedStars,
+      }));
+    }
   };
 
   const goNext = () => {
@@ -35,11 +52,18 @@ export function ChoiceChainApp() {
   };
 
   if (screen === "home") {
-    return <HomeScreen onStart={() => setScreen("modules")} />;
+    return <HomeScreen onStart={() => setScreen("modules")} progress={progress} />;
   }
 
   if (screen === "modules") {
-    return <ModuleSelect modules={MODULES} onSelect={selectModule} />;
+    return (
+      <ModuleSelect 
+        modules={MODULES} 
+        onSelect={selectModule} 
+        progress={progress}
+        onBack={() => setScreen("home")}
+      />
+    );
   }
 
   if (screen === "scenario" && activeModule) {
@@ -60,6 +84,7 @@ export function ChoiceChainApp() {
         onNext={goNext}
         onMenu={() => setScreen("modules")}
         isLast={activeModule.id === 10}
+        progress={progress}
       />
     );
   }

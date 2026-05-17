@@ -1,6 +1,7 @@
 export interface Module {
   id: number;
-  thinker: string;
+  character: string;
+  characterEmoji: string;
   title: string;
   hook: string;
   color: [string, string];
@@ -11,317 +12,358 @@ export interface Module {
     title: string;
     body: string;
     insight: string;
+    stars: number;
   }[];
 }
 
 export const MODULES: Module[] = [
   {
     id: 1,
-    thinker: "Martin Heidegger",
-    title: "Technology as a Way of Revealing",
-    hook: "When systems begin to define how reality is seen",
-    color: ["#1a1a3e", "#0d2b5e"],
-    accent: "#4fc3f7",
-    scenario: "Should a city implement an AI surveillance system that analyzes public behavior to predict and prevent crime?",
+    character: "Robot Ricky",
+    characterEmoji: "🤖",
+    title: "The Watching Cameras",
+    hook: "Who's watching and why does it matter?",
+    color: ["#1e3a5f", "#2d5a87"],
+    accent: "#5ce1e6",
+    scenario: "Your school wants to put cameras everywhere - in hallways, classrooms, and even the playground - to keep everyone safe. But some kids feel weird about being watched all the time. What do you think the school should do?",
     choices: [
-      "Implement full AI surveillance across all public spaces to maximize safety and predictive control.",
-      "Implement AI surveillance only in high-risk areas while maintaining human oversight and limitations.",
-      "Reject the use of AI surveillance systems in public spaces to fully protect privacy and human freedom."
+      "Put cameras everywhere! Safety is super important, and cameras help catch bullies and keep everyone safe.",
+      "Put cameras only in some places like the entrance and hallways, but not in classrooms or the playground.",
+      "Don't use cameras at all. Teachers and friends can help keep us safe without watching us all the time."
     ],
     feedback: [
       {
-        title: "Enframing Reality",
-        body: "This reflects Heidegger's idea of technology as enframing — where reality is revealed only as something to be measured, optimized, and controlled. Humans become 'standing reserve,' reduced to data points to be monitored and processed. Safety rises, but lived human freedom contracts.",
-        insight: "Security is strengthened, but human existence is increasingly defined through data classification."
+        title: "The Watchful Eye",
+        body: "Having cameras everywhere can help catch bad behavior and keep people safe. But when someone's always watching, it might make kids feel nervous or like they can't be themselves. It's like having a teacher follow you everywhere - even to recess!",
+        insight: "Safety goes up, but kids might feel less free to play and explore.",
+        stars: 2
       },
       {
-        title: "Moderated Perception",
-        body: "This approach uses technology as a tool rather than a dominant structure of perception. It acknowledges Heidegger's warning but avoids total enframing by preserving spaces where human behavior is not fully quantified.",
-        insight: "A controlled balance between technological utility and human autonomy is maintained."
+        title: "Finding the Middle Ground",
+        body: "Putting cameras only in some places means you get some safety help while still having spaces where kids can relax and be themselves. The entrance cameras can help keep strangers out, but the playground stays a free space to play!",
+        insight: "A balance between being safe and being free!",
+        stars: 3
       },
       {
-        title: "Resisting the Frame",
-        body: "This prioritizes human autonomy and resists the technological reduction of human life into measurable patterns. Individuals can exist outside systems of constant observation and classification.",
-        insight: "Human freedom and privacy are fully preserved, but technological preventive capabilities are limited."
+        title: "Trust and Teamwork",
+        body: "Without cameras, everyone works together to stay safe - teachers, students, and parents. It's harder to catch everything, but kids learn to look out for each other and solve problems together. That's called building a community!",
+        insight: "More freedom, but everyone has to help keep each other safe.",
+        stars: 2
       }
     ]
   },
   {
     id: 2,
-    thinker: "Jason Hickel",
-    title: "Human Flourishing & De-Growth",
-    hook: "Progress measured not in output, but in well-being",
-    color: ["#0a2818", "#1a3a1a"],
-    accent: "#69f0ae",
-    scenario: "Should societies continue prioritizing technological systems that maximize productivity and economic growth despite increasing resource consumption?",
+    character: "Nature Nina",
+    characterEmoji: "🌱",
+    title: "More Stuff or More Trees?",
+    hook: "What really makes us happy?",
+    color: ["#1a4d2e", "#2d6a4f"],
+    accent: "#74c69d",
+    scenario: "A company wants to build a huge factory near your town. It will make lots of toys and gadgets, but it will also cut down a forest and use lots of water. Some people want the jobs, others want to save the forest. What should happen?",
     choices: [
-      "Continue pursuing continuous technological expansion and economic growth to maximize productivity and output.",
-      "Adopt reduced consumption models that prioritize sustainability, equity, and ecological balance over unlimited growth.",
-      "Limit or reject productivity-enhancing technologies to avoid the risks of overdevelopment and environmental degradation."
+      "Build the factory! We'll get cool new toys and people will have jobs. We can plant new trees somewhere else.",
+      "Build a smaller factory that doesn't hurt the forest as much. Maybe make fewer things, but keep the trees too!",
+      "Don't build the factory. The forest is home to animals and helps clean our air. We have enough toys already!"
     ],
     feedback: [
       {
-        title: "The Growth Machine",
-        body: "This reflects the dominant global development model, which Hickel critiques as ecologically unsustainable. While output increases, it intensifies resource extraction and deepens global inequality between wealthy and developing nations.",
-        insight: "Economic productivity rises, but ecological and social stability decline."
+        title: "More is More?",
+        body: "Factories give us lots of things we want and jobs for people to earn money. But cutting down forests means animals lose their homes, and we lose trees that clean our air and make oxygen for us to breathe. New trees take a loooong time to grow!",
+        insight: "We get more stuff, but nature gets smaller.",
+        stars: 2
       },
       {
-        title: "De-Growth Reimagined",
-        body: "This aligns with Hickel's concept of 'de-growth' — rethinking progress as well-being rather than accumulation. It promotes global fairness by reducing excessive consumption in high-income societies.",
-        insight: "Human flourishing is prioritized through ecological and social balance rather than expansion."
+        title: "Sharing the Space",
+        body: "A smaller factory means we still get some new things and some jobs, but we also keep most of the forest! This is called finding a balance. The animals keep their home, and we still have nice things. Win-win!",
+        insight: "Some new things AND a healthy forest. Nice balance!",
+        stars: 3
       },
       {
-        title: "Ecological Primacy",
-        body: "This approach prioritizes ecological preservation over technological and economic acceleration. While it reduces environmental pressure, it may also slow improvements in living standards and innovation.",
-        insight: "Environmental protection is prioritized over rapid economic progress."
+        title: "Nature First",
+        body: "Keeping the forest means the animals stay safe, the air stays clean, and we have beautiful places to explore! But people who wanted jobs might be sad. Sometimes taking care of nature means saying no to some things we want.",
+        insight: "The planet stays healthy, but we have to be happy with what we have.",
+        stars: 2
       }
     ]
   },
   {
     id: 3,
-    thinker: "Aristotle",
-    title: "The Good Life",
-    hook: "Can algorithms lead us toward virtue?",
-    color: ["#2d1a00", "#3d2200"],
-    accent: "#ffb74d",
-    scenario: "Should artificial intelligence systems be allowed to fully manage personal decisions such as education, career paths, and daily life routines?",
+    character: "Wise Owl Omar",
+    characterEmoji: "🦉",
+    title: "Let the Robot Decide?",
+    hook: "Who should make your choices?",
+    color: ["#5a3921", "#7d5a3c"],
+    accent: "#fbbf24",
+    scenario: "There's a new app that can pick your clothes, choose your lunch, suggest your friends, and even tell you what to study. It knows you really well and always picks things you'll probably like. Should kids use this app for everything?",
     choices: [
-      "Allow AI systems to fully manage personal decisions in order to optimize life outcomes and efficiency.",
-      "Use AI systems as supportive tools while maintaining human control over final decisions.",
-      "Reject the use of AI systems in personal decision-making to preserve full human autonomy and responsibility."
+      "Yes! Let the app decide everything. It's smart and knows what I like. I won't make bad choices anymore!",
+      "Use the app for some things, like finding new books or games, but make my own choices about friends and important stuff.",
+      "No way! I want to make my own choices, even if I sometimes pick wrong. That's how I learn!"
     ],
     feedback: [
       {
-        title: "Eudaimonia Eroded",
-        body: "From Aristotle's view, this undermines Eudaimonia — human flourishing — because individuals stop exercising rational thought and moral judgment. A meaningful life requires active reasoning and moral responsibility, not passive optimization.",
-        insight: "Efficiency increases, but human virtue and personal development weaken."
+        title: "The Easy Button",
+        body: "When an app makes all your choices, life seems easier. But here's the thing: making choices - even wrong ones - is how your brain learns and grows! If you never practice choosing, how will you know what YOU really like?",
+        insight: "Fewer mistakes, but also fewer chances to discover who you really are.",
+        stars: 2
       },
       {
-        title: "Phronesis Preserved",
-        body: "This aligns with Aristotle's concept of phronesis (practical wisdom), where individuals use tools to enhance — not replace — rational judgment. Technology becomes a means of supporting virtuous living rather than directing it.",
-        insight: "Human flourishing is supported through balanced integration of reason and technology."
+        title: "Best of Both Worlds",
+        body: "Using the app for small stuff (like finding a new book) saves time. But making big choices yourself (like who to be friends with) helps your brain grow stronger. It's like using training wheels sometimes but also riding on your own!",
+        insight: "Smart help when you need it, real learning when it matters!",
+        stars: 3
       },
       {
-        title: "Full Moral Agency",
-        body: "This preserves complete moral agency, which Aristotle sees as essential for developing virtue. However, it removes external support systems that may improve decision quality and efficiency.",
-        insight: "Autonomy is maximized, but supportive optimization is lost."
+        title: "Learning by Doing",
+        body: "Making your own choices - even the wrong ones - teaches you about yourself. Every mistake is actually a lesson! You might pick a food you don't like, but then you KNOW you don't like it. That's wisdom you earned yourself!",
+        insight: "More mistakes, but way more learning and growing!",
+        stars: 3
       }
     ]
   },
   {
     id: 4,
-    thinker: "UDHR · UN DUSK · UN RSSR",
-    title: "When Technology and Humanity Cross",
-    hook: "Dignity cannot be automated",
-    color: ["#1a0a2e", "#2a0a3e"],
-    accent: "#ce93d8",
-    scenario: "Should hospitals integrate emotionally responsive AI systems to assist or replace human nurses in patient care?",
+    character: "Caring Clara",
+    characterEmoji: "💝",
+    title: "Robot Nurses?",
+    hook: "Can a robot really care about you?",
+    color: ["#4a1942", "#6b2d5c"],
+    accent: "#f472b6",
+    scenario: "A hospital wants to use friendly robots to help take care of sick kids. The robots can check temperatures, bring medicine, and tell jokes. But they can't give real hugs or truly understand how you feel. Should robots help take care of sick kids?",
     choices: [
-      "Replace human nurses with emotionally responsive AI systems to improve efficiency, monitoring, and healthcare delivery.",
-      "Integrate AI systems as assistive tools while ensuring human nurses remain responsible for patient care and emotional support.",
-      "Avoid emotionally responsive AI in healthcare to ensure all care remains fully human-led and human-centered."
+      "Replace all the nurses with robots! They never get tired and always remember the medicine. Plus, they tell funny jokes!",
+      "Have robots help the nurses with boring tasks so the nurses have more time to talk and play with sick kids.",
+      "No robots in hospitals! When you're sick, you need real people who can hug you and really understand how you feel."
     ],
     feedback: [
       {
-        title: "Dignity Under Threat",
-        body: "This raises concerns under the UDHR's right to dignity and humane treatment. The UN DUSK framework emphasizes that autonomous emotional AI may lack accountability in sensitive care settings. Under UN RSSR, replacing human caregivers weakens relational and social responsibility in healthcare.",
-        insight: "Efficiency may increase, but human dignity, accountability, and relational care are significantly reduced."
+        title: "Robo-Care",
+        body: "Robots are great at remembering things and working all day without getting tired. But when you're sick and scared, a robot's joke isn't the same as a real person holding your hand. Robots can DO things for you, but can they really CARE about you?",
+        insight: "Perfect medicine timing, but no warm hugs when you're sad.",
+        stars: 2
       },
       {
-        title: "Rights-Centered Integration",
-        body: "This aligns strongly with UDHR principles, ensuring dignity and humane treatment remain central. It supports UN DUSK standards — transparency, human oversight, and ethical deployment. Under UN RSSR, responsibility is shared but anchored in human accountability.",
-        insight: "Technology enhances healthcare while preserving human dignity and ethical responsibility."
+        title: "Teamwork Makes the Dream Work",
+        body: "When robots handle the boring stuff (counting pills, taking temperatures), nurses have more time for the important stuff - like sitting with you when you're scared, reading you stories, or calling your mom. The robots help the humans help YOU!",
+        insight: "Robots do the boring work, humans do the heart work!",
+        stars: 3
       },
       {
-        title: "Purely Human Care",
-        body: "This fully prioritizes UDHR principles of dignity and human-centered care. It eliminates risks associated with algorithmic emotional simulation, ensuring care remains authentic and relational — though limiting assistive efficiencies.",
-        insight: "Human dignity and authenticity are fully preserved, but technological assistance is restricted."
+        title: "All Human Care",
+        body: "Real people can see when you're sad even if you don't say anything. They give the best hugs and really listen. But nurses get tired and can forget things. Without robot help, they might have less time for each kid.",
+        insight: "All the warmth and love, but nurses have a lot to do!",
+        stars: 2
       }
     ]
   },
   {
     id: 5,
-    thinker: "Bill Joy",
-    title: "Why the Future Doesn't Need Us",
-    hook: "Technologies that outgrow their creators",
-    color: ["#1a0000", "#2d0a0a"],
-    accent: "#ef5350",
-    scenario: "Should society fully adopt advanced AI and robotics systems even if they may eventually replace most human labor and decision-making roles?",
+    character: "Future Finn",
+    characterEmoji: "🚀",
+    title: "Super Smart Machines",
+    hook: "What if robots become smarter than us?",
+    color: ["#3d1010", "#5c2020"],
+    accent: "#f87171",
+    scenario: "Scientists are building robots that learn and get smarter every day. Someday they might be smarter than humans! They could solve big problems like diseases, but they might also not need humans anymore. Should we keep making them smarter?",
     choices: [
-      "Adopt advanced AI and robotics systems without restriction to maximize innovation and efficiency.",
-      "Regulate and carefully govern advanced technologies to ensure responsible and controlled development.",
-      "Restrict or limit automation technologies in essential sectors such as healthcare, governance, and public safety."
+      "Make them as smart as possible! Super-smart robots could cure diseases and solve all our problems. The smarter, the better!",
+      "Keep making them smarter, but add special rules so humans always stay in charge. Like a robot off-switch!",
+      "Stop making them smarter right now. Robots should be our helpers, not our bosses. Some things are too risky!"
     ],
     feedback: [
       {
-        title: "Unchecked Acceleration",
-        body: "Bill Joy warns that AI, robotics, and genetic technologies may evolve beyond human control. Unrestricted adoption increases efficiency but reduces human oversight over critical systems — a trajectory Joy described as existentially dangerous.",
-        insight: "Technological progress accelerates, but control over its long-term consequences weakens."
+        title: "Unlimited Power!",
+        body: "Super-smart robots could solve problems humans can't even understand! But here's a tricky question: if a robot is way smarter than us, will it still listen to us? It's like asking your teacher to follow your rules - would that work?",
+        insight: "Amazing possibilities, but we might lose control.",
+        stars: 2
       },
       {
-        title: "Ethical Restraint",
-        body: "This reflects Bill Joy's call for ethical restraint and precaution in developing powerful technologies. It allows innovation while maintaining human governance over high-risk systems — the balance Joy argued was essential.",
-        insight: "Balanced progress is maintained through ethical regulation and oversight."
+        title: "Smart but Safe",
+        body: "Making robots smarter WITH safety rules is like driving a fast car with good brakes. You get the speed (smart robots!) but can stop if needed. The key is making sure the safety rules actually work!",
+        insight: "Keep the benefits, but don't forget the emergency stop button!",
+        stars: 3
       },
       {
-        title: "Human Domains Protected",
-        body: "This prioritizes human control in critical domains to reduce existential and systemic risks. However, it may slow technological advancement and limit efficiency gains in essential sectors.",
-        insight: "Safety and human control are prioritized over rapid technological expansion."
+        title: "Know When to Stop",
+        body: "Stopping now means we won't get all those amazing solutions. But it also means we definitely stay in charge. Sometimes the wisest choice is knowing when to say 'that's enough.' Not every adventure is worth the risk!",
+        insight: "Safer for sure, but we might miss out on big discoveries.",
+        stars: 2
       }
     ]
   },
   {
     id: 6,
-    thinker: "Manuel Castells",
-    title: "The Information Age",
-    hook: "The algorithm that shapes what you believe",
-    color: ["#001a2d", "#002a3d"],
-    accent: "#26c6da",
-    scenario: "Should social media platforms continue using AI-driven algorithms to personalize news feeds based on user behavior and preferences?",
+    character: "Newsy Nadia",
+    characterEmoji: "📱",
+    title: "The Magic Feed",
+    hook: "Why does the app show you what it shows?",
+    color: ["#0c3547", "#154c63"],
+    accent: "#38bdf8",
+    scenario: "Social media apps learn what you like and only show you more of that. So if you like cat videos, you see MORE cats. If you like soccer, you see MORE soccer. But you stop seeing other stuff. Is this magic feed a good thing?",
     choices: [
-      "Allow full algorithmic personalization of information feeds to maximize relevance, engagement, and user convenience.",
-      "Reduce algorithmic personalization while maintaining some level of content recommendation for user convenience.",
-      "Eliminate algorithmic personalization to ensure equal and unbiased access to all information."
+      "Yes! I love seeing exactly what I like. Why would I want to see stuff I don't like? Give me all the cat videos!",
+      "Show me mostly what I like, but also mix in some new things I've never seen before. I might discover something cool!",
+      "Show me everything, not just what I already like. I want to see what my friends with different interests are seeing too!"
     ],
     feedback: [
       {
-        title: "The Network Society's Shadow",
-        body: "Castells' 'network society' shows how information flows shape power, communication, and social structure. Full algorithmic filtering creates 'information bubbles,' limiting exposure to diverse perspectives and shaping beliefs invisibly.",
-        insight: "Information becomes more efficient but less neutral, increasing the risk of echo chambers."
+        title: "The Bubble",
+        body: "It feels great to see only things you love! But here's the thing: you might start thinking EVERYONE loves cats because that's all you see. Your world becomes a bubble where everything seems the same. You might miss out on discovering you also love dogs!",
+        insight: "Super fun, but your world gets smaller and smaller.",
+        stars: 2
       },
       {
-        title: "Balanced Information Ecology",
-        body: "This represents a balanced information ecosystem where users are supported by technology but not fully controlled by it. It reduces extreme filtering effects while maintaining usability in digital platforms.",
-        insight: "Information remains accessible while reducing the risk of manipulation and isolation."
+        title: "The Discovery Mix",
+        body: "Seeing mostly what you like PLUS some new stuff is like your favorite meal with a surprise side dish! You stay happy, but you also discover new things. Maybe you find out you love basketball too, not just soccer!",
+        insight: "Comfortable but still full of surprises!",
+        stars: 3
       },
       {
-        title: "Open Information Flow",
-        body: "This prioritizes open information flow and reduces algorithmic influence over perception. However, it may overwhelm users with excessive data and reduce usability of modern platforms.",
-        insight: "Information neutrality is preserved, but accessibility and convenience are reduced."
+        title: "The Big Picture",
+        body: "Seeing everything helps you understand the whole world, not just your little corner. You'll see some stuff you don't like, but you'll also understand your friends better. It's like visiting different countries instead of staying home!",
+        insight: "More variety, even if not everything is your favorite.",
+        stars: 3
       }
     ]
   },
   {
     id: 7,
-    thinker: "IPBES & Ecological Science",
-    title: "Biodiversity and a Healthy Society",
-    hook: "The city rising where the forest stood",
-    color: ["#0a1a0a", "#0a2a12"],
-    accent: "#a5d6a7",
-    scenario: "Should a government approve the construction of a smart eco-city that replaces a natural forest ecosystem to promote urban development?",
+    character: "Wild Wendy",
+    characterEmoji: "🦋",
+    title: "City vs. Forest",
+    hook: "Where should animals live?",
+    color: ["#0f2d0f", "#1a4a1a"],
+    accent: "#86efac",
+    scenario: "The mayor wants to build a new 'eco-city' with parks and solar panels. Sounds great! But they want to build it where a forest is now. The forest has deer, birds, and even some rare butterflies! What should the mayor do?",
     choices: [
-      "Proceed with full development of the eco-city to promote modernization, economic growth, and urban expansion.",
-      "Balance urban development with strict conservation of biodiversity and ecosystem protection.",
-      "Preserve the forest entirely and reject any form of large-scale urban development in the area."
+      "Build the eco-city! It will be good for the environment in new ways. The animals can move somewhere else.",
+      "Build a smaller city and keep half the forest. The animals and people can be neighbors!",
+      "Don't build anything! The forest is already the best home for those animals. They were there first!"
     ],
     feedback: [
       {
-        title: "Ecological Debt",
-        body: "IPBES findings show biodiversity loss directly threatens human health, food systems, and ecosystem stability. Replacing forests with urban systems reduces ecological resilience and disrupts natural life cycles essential for planetary health.",
-        insight: "Urban progress increases, but ecosystem stability and long-term survival are weakened."
+        title: "New Beginnings",
+        body: "An eco-city sounds nice with its solar panels and parks. But a park isn't the same as a real forest! Those deer and butterflies need their REAL home with old trees and wild plants. When we say 'animals can move,' where exactly do they go?",
+        insight: "Shiny new city, but homeless animals.",
+        stars: 2
       },
       {
-        title: "Sustainable Coexistence",
-        body: "This aligns with ecological science perspectives emphasizing sustainable coexistence between human systems and natural environments. It allows development while maintaining ecosystem functions essential for human survival.",
-        insight: "A sustainable balance between progress and ecological preservation is achieved."
+        title: "Good Neighbors",
+        body: "Building LESS and saving half the forest means the rare butterflies can stay in their home while people get a nice (but smaller) place to live. The kids could even visit the forest to see real wildlife - like having a zoo that's not a zoo!",
+        insight: "Sharing the space like good neighbors do!",
+        stars: 3
       },
       {
-        title: "Nature First",
-        body: "This prioritizes ecosystem integrity and biodiversity protection as essential for long-term planetary health. However, it may limit urban expansion and economic opportunities in certain regions.",
-        insight: "Ecological preservation is fully prioritized over urban development."
+        title: "Forest Forever",
+        body: "Keeping the whole forest means every single deer, bird, and butterfly keeps their home. The forest also cleans our air and gives us fresh water! But people who wanted to live in that nice eco-city will have to go somewhere else.",
+        insight: "Happy animals, but humans need to find another spot.",
+        stars: 2
       }
     ]
   },
   {
     id: 8,
-    thinker: "Doudna · Charpentier · Boyer · Cohen",
-    title: "GMOs and Gene Therapy",
-    hook: "Rewriting the code of human identity",
-    color: ["#001a1a", "#002a2a"],
-    accent: "#80deea",
-    scenario: "Should genetic engineering be used to allow parents to modify the genetic traits of their future children for health, intelligence, or physical characteristics?",
+    character: "Science Sam",
+    characterEmoji: "🧬",
+    title: "Designer Babies?",
+    hook: "Should parents pick what their kids are like?",
+    color: ["#0d4040", "#156565"],
+    accent: "#5eead4",
+    scenario: "Scientists can now change tiny parts of babies before they're born. They can remove sickness, but some people want to also change eye color, height, or even make kids smarter! Should parents be allowed to design their babies?",
     choices: [
-      "Allow full genetic modification of human traits to enhance physical, cognitive, and biological characteristics.",
-      "Allow genetic modification only for preventing or curing diseases, not for enhancement purposes.",
-      "Prohibit genetic modification of human embryos to avoid ethical, social, and ecological risks."
+      "Let parents change anything they want! If you can make your kid healthier, smarter, and taller, why not?",
+      "Only allow changes that prevent sickness and diseases. No changing looks or making 'super babies.'",
+      "Don't change anything! Every baby should be born naturally, just the way they are. We shouldn't play around with this stuff."
     ],
     feedback: [
       {
-        title: "Designer Humanity",
-        body: "CRISPR technology — developed by Doudna and Charpentier — makes enhancement scientifically possible. However, bioethicists warn this may lead to inequality and ethical concerns about 'designer humans,' blurring the boundaries of human identity.",
-        insight: "Scientific capability expands, but ethical boundaries around human identity become blurred."
+        title: "The Perfect Baby?",
+        body: "Changing everything sounds cool, but think about it: what if only rich families can afford 'super babies'? And what makes someone 'perfect' anyway? Your freckles, your curly hair, your unique brain - those 'imperfections' are what make you YOU!",
+        insight: "More 'perfect' babies, but is everyone's 'perfect' the same?",
+        stars: 2
       },
       {
-        title: "Therapeutic Intent",
-        body: "This reflects the original intent of gene therapy as developed by Boyer and Cohen — medical use to eliminate suffering. It aligns with ethical medical practice while limiting enhancement-based inequality.",
-        insight: "Medical benefit is prioritized while ethical risks are controlled."
+        title: "Healthy is Enough",
+        body: "Removing sickness before birth could save babies from hurting! But stopping there means kids are still surprised by their eye color and personality. You're you, not something your parents ordered from a catalog!",
+        insight: "No more sickness, but you're still wonderfully YOU!",
+        stars: 3
       },
       {
-        title: "Precautionary Refusal",
-        body: "This avoids potential risks of genetic inequality, unintended consequences, and moral concerns about human design. However, it also limits medical innovation that could eliminate devastating genetic diseases.",
-        insight: "Ethical safety is prioritized over biomedical advancement."
+        title: "Nature Knows Best",
+        body: "Letting babies be born naturally means embracing surprises - the good and the challenging. Some babies might have health problems, but they'll be exactly who nature intended. Sometimes our differences make us strongest!",
+        insight: "Totally natural, but some health problems could have been prevented.",
+        stars: 2
       }
     ]
   },
   {
     id: 9,
-    thinker: "Richard Feynman · Norio Taniguchi",
-    title: "Nanotechnology",
-    hook: "Invisible forces, unpredictable consequences",
-    color: ["#1a1000", "#2a2000"],
-    accent: "#fff176",
-    scenario: "Should nanotechnology be widely implemented in medicine and industry, despite uncertainties about long-term environmental and health effects?",
+    character: "Tiny Tech Tina",
+    characterEmoji: "🔬",
+    title: "Invisible Machines",
+    hook: "Super tiny helpers... but are they safe?",
+    color: ["#3d3d00", "#5c5c00"],
+    accent: "#fde047",
+    scenario: "Scientists created teeny-tiny robots (smaller than a grain of sand!) that could clean pollution, deliver medicine inside your body, or make super-strong materials. But we don't know yet if they're safe for humans and animals. Should we use them?",
     choices: [
-      "Fully adopt nanotechnology across medicine, electronics, and environmental systems to maximize innovation and efficiency.",
-      "Limit nanotechnology use to controlled medical and industrial applications with strict safety regulations.",
-      "Restrict nanotechnology development due to potential unknown risks to human health and ecosystems."
+      "Use them everywhere! They could solve pollution and cure diseases! We'll figure out the safety stuff as we go.",
+      "Use them only in labs and hospitals with lots of testing first. Make sure they're safe before putting them everywhere.",
+      "Wait and don't use them at all yet. We don't know enough about what these tiny robots might do to nature and our bodies."
     ],
     feedback: [
       {
-        title: "Feynman's Promise",
-        body: "Inspired by Feynman's vision and Taniguchi's definition of nanoscale engineering, nanotechnology promises breakthroughs in medicine and materials science. However, long-term biological and environmental effects remain deeply uncertain.",
-        insight: "Technological innovation expands rapidly, but risk uncertainty increases."
+        title: "Tiny but Risky",
+        body: "These tiny robots could do amazing things! But because they're SO small, we can't really see what they do. What if they accidentally hurt good cells in your body or tiny animals in the ocean? Small things can cause big problems!",
+        insight: "Amazing possibilities, but we can't take back what we don't understand.",
+        stars: 2
       },
       {
-        title: "Precautionary Innovation",
-        body: "This reflects STS precautionary principles, ensuring innovation is balanced with risk assessment and ethical oversight. It allows benefits while minimizing unknown consequences through controlled deployment.",
-        insight: "Balanced innovation with controlled risk management."
+        title: "Test First, Wonder Later",
+        body: "Using tiny robots ONLY in safe places (like hospitals) means scientists can watch what happens. If something goes wrong, it's easier to stop. It's like trying a new food at home before eating it at a restaurant!",
+        insight: "Careful steps lead to confident leaps!",
+        stars: 3
       },
       {
-        title: "Caution Over Progress",
-        body: "This prioritizes safety and precaution in the face of scientific uncertainty. However, it may delay significant advancements in medicine and environmental solutions that could benefit millions.",
-        insight: "Safety is prioritized over scientific and technological progress."
+        title: "Wait and See",
+        body: "Waiting means we don't get those cool benefits yet. But we also don't accidentally cause problems we can't fix. Sometimes being patient is the smartest thing to do, even when you're excited!",
+        insight: "Super safe, but we have to wait longer for the cool stuff.",
+        stars: 2
       }
     ]
   },
   {
     id: 10,
-    thinker: "IPCC · Svante Arrhenius",
-    title: "Climate Change & Environmental Awareness",
-    hook: "Engineering the atmosphere as a last resort",
-    color: ["#0a1a2a", "#0a2a3a"],
-    accent: "#4dd0e1",
-    scenario: "Should governments implement large-scale geoengineering technologies to counteract climate change despite uncertain long-term environmental consequences?",
+    character: "Weather Wizard Wally",
+    characterEmoji: "🌍",
+    title: "Fixing the Weather?",
+    hook: "Should we try to control the sky?",
+    color: ["#1e3a5f", "#2d5a87"],
+    accent: "#67e8f9",
+    scenario: "Earth is getting hotter because of pollution. Some scientists want to spray special chemicals in the sky to cool the planet down, like a giant sunscreen for Earth! But nobody knows for sure what else it might do. Should we try it?",
     choices: [
-      "Implement geoengineering technologies immediately to reduce global warming and stabilize the climate system.",
-      "Prioritize emissions reduction and sustainable lifestyle changes while cautiously researching geoengineering.",
-      "Avoid geoengineering entirely and focus solely on natural environmental recovery and policy reform."
+      "Do it now! Earth is getting too hot and we need to cool it down fast. The chemicals will probably work great!",
+      "Research it carefully first, but focus mostly on making less pollution. Fix the cause, not just the symptom!",
+      "Don't mess with the sky at all! We should just stop polluting and let nature heal itself. Spraying stuff could make things worse!"
     ],
     feedback: [
       {
-        title: "Planetary-Scale Risk",
-        body: "Climate science — from Arrhenius's foundational work to IPCC reports — confirms human-driven global warming as a major threat. Geoengineering may reduce temperature rise but introduces unpredictable planetary-scale risks that could destabilize entire climate systems.",
-        insight: "Climate risks may be reduced, but environmental systems become highly uncertain."
+        title: "Sky Experiment",
+        body: "Spraying stuff in the sky MIGHT cool Earth down. But the sky is connected to everything - rain, wind, seasons. What if it messes up rain in one country while fixing heat in another? The sky doesn't follow borders!",
+        insight: "Quick fix maybe, but nobody really knows what else could happen.",
+        stars: 2
       },
       {
-        title: "Mitigation First",
-        body: "This aligns with IPCC recommendations emphasizing mitigation over technological intervention alone. It balances immediate action with long-term responsibility — behavioral change combined with scientific caution.",
-        insight: "A combined approach of behavioral change and scientific caution is prioritized."
+        title: "Fix the Real Problem",
+        body: "Earth is hot because of pollution. So the best fix is... less pollution! Learning about sky-spraying is okay as a backup plan, but riding bikes, using solar power, and planting trees actually solve the problem, not just cover it up.",
+        insight: "Treat the sickness, not just the fever!",
+        stars: 3
       },
       {
-        title: "Natural Recovery",
-        body: "This prioritizes ecological caution and avoids large-scale technological interference in Earth systems. However, natural recovery and policy reform alone may not be sufficient to address the pace of rapid climate change.",
-        insight: "Environmental integrity is preserved, but climate intervention tools are limited."
+        title: "Let Nature Heal",
+        body: "Nature is really good at fixing itself... IF we stop hurting it! But healing takes a long time, and Earth is getting hot fast. Can we wait long enough for nature to recover on its own?",
+        insight: "The safest choice, but maybe not fast enough.",
+        stars: 2
       }
     ]
   }

@@ -1,23 +1,23 @@
 import type { Metadata } from 'next'
-import { Cormorant_Garamond, DM_Sans } from 'next/font/google'
+import { Nunito, Fredoka } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
-const cormorant = Cormorant_Garamond({ 
+const nunito = Nunito({ 
   subsets: ["latin"],
-  weight: ["300", "400", "600", "700"],
-  variable: "--font-cormorant"
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-nunito"
 });
 
-const dmSans = DM_Sans({ 
+const fredoka = Fredoka({ 
   subsets: ["latin"],
-  weight: ["300", "400", "500"],
-  variable: "--font-dm-sans"
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-fredoka"
 });
 
 export const metadata: Metadata = {
-  title: 'Choice Chain | STS Ethical Decision Simulator',
-  description: 'An interactive Science, Technology & Society ethical decision simulator exploring philosophical perspectives through 10 immersive modules.',
+  title: 'Choice Chain | The Big Decision Game for Kids!',
+  description: 'An fun and educational decision-making game where kids explore big questions, earn stars, and learn to think like scientists and philosophers!',
   generator: 'v0.app',
   icons: {
     icon: [
@@ -44,8 +44,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${cormorant.variable} ${dmSans.variable}`}>
-      <body className="font-sans antialiased bg-[#0a0a1a]">
+    <html lang="en" className={`${nunito.variable} ${fredoka.variable}`}>
+      <body className="font-sans antialiased bg-[#1a1a3e]">
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
