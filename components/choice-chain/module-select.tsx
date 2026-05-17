@@ -3,6 +3,7 @@
 import { FadeIn } from "./fade-in";
 import { type Module } from "@/lib/modules-data";
 import type { PlayerProgress } from "./choice-chain-app";
+import { sounds } from "@/lib/sounds";
 
 interface ModuleSelectProps {
   modules: Module[];
@@ -12,6 +13,16 @@ interface ModuleSelectProps {
 }
 
 export function ModuleSelect({ modules, onSelect, progress, onBack }: ModuleSelectProps) {
+  const handleSelect = (module: Module) => {
+    sounds.select();
+    onSelect(module);
+  };
+
+  const handleBack = () => {
+    sounds.back();
+    onBack();
+  };
+
   return (
     <div
       className="min-h-screen px-4 py-5 pb-12 font-sans"
@@ -22,7 +33,7 @@ export function ModuleSelect({ modules, onSelect, progress, onBack }: ModuleSele
       {/* Header */}
       <FadeIn delay={0}>
         <button
-          onClick={onBack}
+          onClick={handleBack}
           className="bg-transparent border-none text-sm cursor-pointer py-1 mb-3 flex items-center gap-2 hover:scale-105 transition-transform"
           style={{ color: "rgba(255,255,255,0.6)" }}
         >
@@ -94,7 +105,7 @@ export function ModuleSelect({ modules, onSelect, progress, onBack }: ModuleSele
         </div>
       </FadeIn>
 
-      {/* Modules Grid */}
+      {/* Modules Grid - Equal sized boxes with aspect ratio */}
       <div className="grid grid-cols-2 gap-3">
         {modules.map((m, i) => {
           const isCompleted = progress.completedModules.includes(m.id);
@@ -102,8 +113,9 @@ export function ModuleSelect({ modules, onSelect, progress, onBack }: ModuleSele
           return (
             <FadeIn key={m.id} delay={150 + i * 40}>
               <button
-                onClick={() => onSelect(m)}
-                className="w-full text-left p-4 rounded-3xl cursor-pointer transition-all active:scale-95 hover:scale-[1.03] relative overflow-hidden"
+                onClick={() => handleSelect(m)}
+                onMouseEnter={() => sounds.hover()}
+                className="w-full aspect-square text-left p-3 rounded-3xl cursor-pointer transition-all active:scale-95 hover:scale-[1.03] relative overflow-hidden flex flex-col"
                 style={{
                   border: isCompleted 
                     ? `3px solid ${m.accent}` 
@@ -127,60 +139,61 @@ export function ModuleSelect({ modules, onSelect, progress, onBack }: ModuleSele
 
                 {/* Completed checkmark */}
                 {isCompleted && (
-                  <div
-                    className="absolute top-2 right-2 text-lg"
-                  >
+                  <div className="absolute top-2 right-2 text-lg">
                     ✅
                   </div>
                 )}
                 
-                {/* Character emoji - bigger and more prominent */}
-                <div
-                  className="text-4xl mb-2 mt-4 transition-transform hover:scale-110"
-                  style={{
-                    filter: isCompleted ? "none" : "saturate(0.8)",
-                  }}
-                >
-                  {m.characterEmoji}
+                {/* Character emoji - centered and bigger */}
+                <div className="flex-1 flex items-center justify-center">
+                  <span
+                    className="text-5xl transition-transform hover:scale-110"
+                    style={{
+                      filter: isCompleted ? "none" : "saturate(0.8)",
+                    }}
+                  >
+                    {m.characterEmoji}
+                  </span>
                 </div>
                 
-                {/* Title */}
-                <div
-                  className="text-sm font-bold leading-tight mb-1"
-                  style={{ color: "#fff" }}
-                >
-                  {m.title}
-                </div>
-                
-                {/* Character name */}
-                <div
-                  className="text-xs font-medium"
-                  style={{ color: m.accent }}
-                >
-                  with {m.character}
-                </div>
+                {/* Bottom section with title, character, stars */}
+                <div className="mt-auto">
+                  {/* Title - truncate if needed */}
+                  <div
+                    className="text-sm font-bold leading-tight mb-0.5 line-clamp-2"
+                    style={{ color: "#fff" }}
+                  >
+                    {m.title}
+                  </div>
+                  
+                  {/* Character name */}
+                  <div
+                    className="text-xs font-medium mb-2"
+                    style={{ color: m.accent }}
+                  >
+                    with {m.character}
+                  </div>
 
-                {/* Stars indicator */}
-                <div className="mt-2 flex gap-1">
-                  {[1, 2, 3].map((star) => (
-                    <span
-                      key={star}
-                      className="text-base"
-                      style={{ 
-                        opacity: isCompleted && star <= earnedStars ? 1 : 0.25,
-                        filter: isCompleted && star <= earnedStars ? "none" : "grayscale(1)",
-                      }}
-                    >
-                      ⭐
-                    </span>
-                  ))}
+                  {/* Stars indicator */}
+                  <div className="flex gap-0.5">
+                    {[1, 2, 3].map((star) => (
+                      <span
+                        key={star}
+                        className="text-sm"
+                        style={{ 
+                          opacity: isCompleted && star <= earnedStars ? 1 : 0.25,
+                          filter: isCompleted && star <= earnedStars ? "none" : "grayscale(1)",
+                        }}
+                      >
+                        ⭐
+                      </span>
+                    ))}
+                  </div>
                 </div>
 
                 {/* Play indicator for incomplete */}
                 {!isCompleted && (
-                  <div 
-                    className="absolute bottom-2 right-2 text-lg opacity-50"
-                  >
+                  <div className="absolute bottom-2 right-2 text-base opacity-50">
                     ▶️
                   </div>
                 )}

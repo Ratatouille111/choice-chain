@@ -3,6 +3,7 @@
 import { Particles } from "./particles";
 import { FadeIn } from "./fade-in";
 import type { PlayerProgress } from "./choice-chain-app";
+import { sounds } from "@/lib/sounds";
 
 interface HomeScreenProps {
   onStart: () => void;
@@ -117,7 +118,10 @@ export function HomeScreen({ onStart, progress }: HomeScreenProps) {
 
       <FadeIn delay={600} className="relative z-10 w-full max-w-sm">
         <button
-          onClick={onStart}
+          onClick={() => {
+            sounds.start();
+            onStart();
+          }}
           className="w-full py-5 rounded-3xl text-xl font-bold tracking-wide cursor-pointer transition-all active:scale-95 hover:scale-105 flex items-center justify-center gap-3"
           style={{
             background: "linear-gradient(135deg, #f472b6, #818cf8, #38bdf8)",
