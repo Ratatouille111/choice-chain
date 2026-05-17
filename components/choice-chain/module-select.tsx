@@ -14,7 +14,7 @@ interface ModuleSelectProps {
 export function ModuleSelect({ modules, onSelect, progress, onBack }: ModuleSelectProps) {
   return (
     <div
-      className="min-h-screen px-5 py-6 pb-12 font-sans"
+      className="min-h-screen px-4 py-5 pb-12 font-sans"
       style={{
         background: "linear-gradient(180deg, #1a1a3e 0%, #0f1629 100%)",
       }}
@@ -23,38 +23,73 @@ export function ModuleSelect({ modules, onSelect, progress, onBack }: ModuleSele
       <FadeIn delay={0}>
         <button
           onClick={onBack}
-          className="bg-transparent border-none text-sm cursor-pointer py-1 mb-4 flex items-center gap-2"
+          className="bg-transparent border-none text-sm cursor-pointer py-1 mb-3 flex items-center gap-2 hover:scale-105 transition-transform"
           style={{ color: "rgba(255,255,255,0.6)" }}
         >
-          <span>←</span> Home
+          <span className="text-lg">🏠</span> Back Home
         </button>
         
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center justify-between mb-5">
           <div>
             <h2
-              className="font-serif text-2xl font-bold m-0 mb-1"
+              className="font-serif text-2xl font-bold m-0 mb-1 flex items-center gap-2"
               style={{ color: "#fff" }}
             >
-              Pick Your Adventure!
+              <span className="text-2xl">🗺️</span> Pick Your Adventure!
             </h2>
             <p
               className="text-sm m-0"
-              style={{ color: "rgba(255,255,255,0.5)" }}
+              style={{ color: "rgba(255,255,255,0.6)" }}
             >
-              Each story teaches you something new
+              Tap a card to start a new quest
             </p>
           </div>
           <div
-            className="px-3 py-2 rounded-xl flex items-center gap-2"
+            className="px-4 py-2 rounded-2xl flex items-center gap-2"
             style={{
-              background: "rgba(251,191,36,0.15)",
-              border: "1px solid rgba(251,191,36,0.3)",
+              background: "linear-gradient(135deg, rgba(251,191,36,0.2), rgba(251,191,36,0.1))",
+              border: "2px solid rgba(251,191,36,0.4)",
             }}
           >
-            <span>⭐</span>
-            <span className="font-bold" style={{ color: "#fbbf24" }}>
+            <span className="text-xl">⭐</span>
+            <span className="text-lg font-bold" style={{ color: "#fbbf24" }}>
               {progress.totalStars}
             </span>
+          </div>
+        </div>
+      </FadeIn>
+
+      {/* Progress bar at top */}
+      <FadeIn delay={100}>
+        <div className="mb-5 px-1">
+          <div className="flex justify-between text-xs mb-2" style={{ color: "rgba(255,255,255,0.6)" }}>
+            <span className="flex items-center gap-1">
+              <span>🎯</span> Progress
+            </span>
+            <span className="font-bold">{progress.completedModules.length}/10 Done!</span>
+          </div>
+          <div
+            className="h-4 rounded-full overflow-hidden relative"
+            style={{ background: "rgba(255,255,255,0.1)", border: "2px solid rgba(255,255,255,0.15)" }}
+          >
+            <div
+              className="h-full rounded-full transition-all duration-500"
+              style={{
+                width: `${(progress.completedModules.length / 10) * 100}%`,
+                background: "linear-gradient(90deg, #f472b6, #818cf8, #38bdf8)",
+                boxShadow: "0 0 10px rgba(244,114,182,0.5)",
+              }}
+            />
+            {progress.completedModules.length > 0 && (
+              <span 
+                className="absolute right-2 top-1/2 -translate-y-1/2 text-xs"
+                style={{ 
+                  left: `calc(${Math.max((progress.completedModules.length / 10) * 100, 10)}% - 10px)`,
+                }}
+              >
+                🏃
+              </span>
+            )}
           </div>
         </div>
       </FadeIn>
@@ -63,39 +98,47 @@ export function ModuleSelect({ modules, onSelect, progress, onBack }: ModuleSele
       <div className="grid grid-cols-2 gap-3">
         {modules.map((m, i) => {
           const isCompleted = progress.completedModules.includes(m.id);
+          const earnedStars = progress.moduleStars?.[m.id] || 0;
           return (
-            <FadeIn key={m.id} delay={i * 50}>
+            <FadeIn key={m.id} delay={150 + i * 40}>
               <button
                 onClick={() => onSelect(m)}
-                className="w-full text-left p-4 rounded-2xl cursor-pointer transition-all active:scale-95 hover:scale-[1.02] relative overflow-hidden"
+                className="w-full text-left p-4 rounded-3xl cursor-pointer transition-all active:scale-95 hover:scale-[1.03] relative overflow-hidden"
                 style={{
                   border: isCompleted 
-                    ? `2px solid ${m.accent}` 
-                    : "2px solid rgba(255,255,255,0.1)",
-                  background: `linear-gradient(135deg, ${m.color[0]}, ${m.color[1]})`,
+                    ? `3px solid ${m.accent}` 
+                    : "3px solid rgba(255,255,255,0.15)",
+                  background: `linear-gradient(145deg, ${m.color[0]}, ${m.color[1]})`,
                   boxShadow: isCompleted 
-                    ? `0 4px 20px ${m.accent}40` 
+                    ? `0 6px 25px ${m.accent}50` 
                     : "0 4px 20px rgba(0,0,0,0.3)",
                 }}
               >
-                {/* Completed badge */}
+                {/* Number badge */}
+                <div
+                  className="absolute top-2 left-2 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold"
+                  style={{
+                    background: isCompleted ? m.accent : "rgba(255,255,255,0.15)",
+                    color: isCompleted ? "#000" : "rgba(255,255,255,0.6)",
+                  }}
+                >
+                  {m.id}
+                </div>
+
+                {/* Completed checkmark */}
                 {isCompleted && (
                   <div
-                    className="absolute top-2 right-2 w-6 h-6 rounded-full flex items-center justify-center text-xs"
-                    style={{
-                      background: m.accent,
-                      color: "#000",
-                    }}
+                    className="absolute top-2 right-2 text-lg"
                   >
-                    ✓
+                    ✅
                   </div>
                 )}
                 
-                {/* Character emoji */}
+                {/* Character emoji - bigger and more prominent */}
                 <div
-                  className="text-3xl mb-2"
+                  className="text-4xl mb-2 mt-4 transition-transform hover:scale-110"
                   style={{
-                    filter: isCompleted ? "none" : "saturate(0.7)",
+                    filter: isCompleted ? "none" : "saturate(0.8)",
                   }}
                 >
                   {m.characterEmoji}
@@ -103,7 +146,7 @@ export function ModuleSelect({ modules, onSelect, progress, onBack }: ModuleSele
                 
                 {/* Title */}
                 <div
-                  className="text-sm font-semibold leading-tight mb-1"
+                  className="text-sm font-bold leading-tight mb-1"
                   style={{ color: "#fff" }}
                 >
                   {m.title}
@@ -111,26 +154,34 @@ export function ModuleSelect({ modules, onSelect, progress, onBack }: ModuleSele
                 
                 {/* Character name */}
                 <div
-                  className="text-xs"
+                  className="text-xs font-medium"
                   style={{ color: m.accent }}
                 >
                   with {m.character}
                 </div>
 
-                {/* Stars indicator for completed */}
-                {isCompleted && (
-                  <div className="mt-2 flex gap-1">
-                    {[1, 2, 3].map((star) => (
-                      <span
-                        key={star}
-                        className="text-sm"
-                        style={{ 
-                          opacity: star <= (m.feedback[0].stars || 2) ? 1 : 0.3 
-                        }}
-                      >
-                        ⭐
-                      </span>
-                    ))}
+                {/* Stars indicator */}
+                <div className="mt-2 flex gap-1">
+                  {[1, 2, 3].map((star) => (
+                    <span
+                      key={star}
+                      className="text-base"
+                      style={{ 
+                        opacity: isCompleted && star <= earnedStars ? 1 : 0.25,
+                        filter: isCompleted && star <= earnedStars ? "none" : "grayscale(1)",
+                      }}
+                    >
+                      ⭐
+                    </span>
+                  ))}
+                </div>
+
+                {/* Play indicator for incomplete */}
+                {!isCompleted && (
+                  <div 
+                    className="absolute bottom-2 right-2 text-lg opacity-50"
+                  >
+                    ▶️
                   </div>
                 )}
               </button>
@@ -139,32 +190,26 @@ export function ModuleSelect({ modules, onSelect, progress, onBack }: ModuleSele
         })}
       </div>
 
-      {/* Progress bar at bottom */}
-      <FadeIn delay={600}>
-        <div className="mt-8 px-2">
-          <div className="flex justify-between text-xs mb-2" style={{ color: "rgba(255,255,255,0.5)" }}>
-            <span>Progress</span>
-            <span>{progress.completedModules.length}/10 Complete</span>
-          </div>
-          <div
-            className="h-3 rounded-full overflow-hidden"
-            style={{ background: "rgba(255,255,255,0.1)" }}
+      {/* Completion message */}
+      {progress.completedModules.length === 10 && (
+        <FadeIn delay={700}>
+          <div 
+            className="mt-6 p-4 rounded-2xl text-center"
+            style={{
+              background: "linear-gradient(135deg, rgba(251,191,36,0.2), rgba(244,114,182,0.2))",
+              border: "2px solid rgba(251,191,36,0.4)",
+            }}
           >
-            <div
-              className="h-full rounded-full transition-all duration-500"
-              style={{
-                width: `${(progress.completedModules.length / 10) * 100}%`,
-                background: "linear-gradient(90deg, #f472b6, #818cf8, #38bdf8)",
-              }}
-            />
-          </div>
-          {progress.completedModules.length === 10 && (
-            <p className="text-center mt-4 text-sm" style={{ color: "#fbbf24" }}>
-              🎉 Amazing! You completed all adventures! 🎉
+            <div className="text-3xl mb-2">🎉🏆🎉</div>
+            <p className="text-lg font-bold" style={{ color: "#fbbf24" }}>
+              WOW! You finished all adventures!
             </p>
-          )}
-        </div>
-      </FadeIn>
+            <p className="text-sm mt-1" style={{ color: "rgba(255,255,255,0.7)" }}>
+              You&apos;re a Super Thinker! Try again for more stars!
+            </p>
+          </div>
+        </FadeIn>
+      )}
     </div>
   );
 }

@@ -13,6 +13,7 @@ export interface Module {
     body: string;
     insight: string;
     stars: number;
+    whyNot3Stars?: string;
   }[];
 }
 
@@ -36,7 +37,8 @@ export const MODULES: Module[] = [
         title: "The Watchful Eye",
         body: "Having cameras everywhere can help catch bad behavior and keep people safe. But when someone's always watching, it might make kids feel nervous or like they can't be themselves. It's like having a teacher follow you everywhere - even to recess!",
         insight: "Safety goes up, but kids might feel less free to play and explore.",
-        stars: 2
+        stars: 2,
+        whyNot3Stars: "Think about this: What if there was a way to be safe AND still have some places where you can just be yourself without cameras? Finding balance is the key!"
       },
       {
         title: "Finding the Middle Ground",
@@ -48,7 +50,8 @@ export const MODULES: Module[] = [
         title: "Trust and Teamwork",
         body: "Without cameras, everyone works together to stay safe - teachers, students, and parents. It's harder to catch everything, but kids learn to look out for each other and solve problems together. That's called building a community!",
         insight: "More freedom, but everyone has to help keep each other safe.",
-        stars: 2
+        stars: 2,
+        whyNot3Stars: "This is thoughtful! But what about keeping strangers out of school? Sometimes a few cameras at the entrance can help with that. Maybe there's a middle way?"
       }
     ]
   },
@@ -71,7 +74,8 @@ export const MODULES: Module[] = [
         title: "More is More?",
         body: "Factories give us lots of things we want and jobs for people to earn money. But cutting down forests means animals lose their homes, and we lose trees that clean our air and make oxygen for us to breathe. New trees take a loooong time to grow!",
         insight: "We get more stuff, but nature gets smaller.",
-        stars: 2
+        stars: 2,
+        whyNot3Stars: "Good thinking about jobs! But those animals need their home too. Is there a way to get some jobs AND keep some forest? That might be the best of both worlds!"
       },
       {
         title: "Sharing the Space",
@@ -83,7 +87,8 @@ export const MODULES: Module[] = [
         title: "Nature First",
         body: "Keeping the forest means the animals stay safe, the air stays clean, and we have beautiful places to explore! But people who wanted jobs might be sad. Sometimes taking care of nature means saying no to some things we want.",
         insight: "The planet stays healthy, but we have to be happy with what we have.",
-        stars: 2
+        stars: 2,
+        whyNot3Stars: "You really care about animals - that's awesome! But what about the people who need jobs? Maybe a smaller factory could help them AND save most of the forest?"
       }
     ]
   },
@@ -106,7 +111,8 @@ export const MODULES: Module[] = [
         title: "The Easy Button",
         body: "When an app makes all your choices, life seems easier. But here's the thing: making choices - even wrong ones - is how your brain learns and grows! If you never practice choosing, how will you know what YOU really like?",
         insight: "Fewer mistakes, but also fewer chances to discover who you really are.",
-        stars: 2
+        stars: 2,
+        whyNot3Stars: "It sounds nice to never make mistakes! But your brain is like a muscle - it gets stronger when you use it. Maybe use the app for small stuff but make big choices yourself?"
       },
       {
         title: "Best of Both Worlds",
@@ -141,7 +147,8 @@ export const MODULES: Module[] = [
         title: "Robo-Care",
         body: "Robots are great at remembering things and working all day without getting tired. But when you're sick and scared, a robot's joke isn't the same as a real person holding your hand. Robots can DO things for you, but can they really CARE about you?",
         insight: "Perfect medicine timing, but no warm hugs when you're sad.",
-        stars: 2
+        stars: 2,
+        whyNot3Stars: "Robots are pretty cool! But when you're sick and scared, don't you want a real person to comfort you? What if robots just helped the nurses instead of replacing them?"
       },
       {
         title: "Teamwork Makes the Dream Work",
@@ -153,7 +160,8 @@ export const MODULES: Module[] = [
         title: "All Human Care",
         body: "Real people can see when you're sad even if you don't say anything. They give the best hugs and really listen. But nurses get tired and can forget things. Without robot help, they might have less time for each kid.",
         insight: "All the warmth and love, but nurses have a lot to do!",
-        stars: 2
+        stars: 2,
+        whyNot3Stars: "Human hugs are the best! But nurses have SO much to do. What if robots helped with boring tasks so nurses have MORE time to give hugs and play games?"
       }
     ]
   },
@@ -176,7 +184,8 @@ export const MODULES: Module[] = [
         title: "Unlimited Power!",
         body: "Super-smart robots could solve problems humans can't even understand! But here's a tricky question: if a robot is way smarter than us, will it still listen to us? It's like asking your teacher to follow your rules - would that work?",
         insight: "Amazing possibilities, but we might lose control.",
-        stars: 2
+        stars: 2,
+        whyNot3Stars: "Super-smart robots sound amazing! But if they're smarter than us, how do we make sure they still do what we want? Maybe we need some safety rules first?"
       },
       {
         title: "Smart but Safe",
@@ -188,7 +197,8 @@ export const MODULES: Module[] = [
         title: "Know When to Stop",
         body: "Stopping now means we won't get all those amazing solutions. But it also means we definitely stay in charge. Sometimes the wisest choice is knowing when to say 'that's enough.' Not every adventure is worth the risk!",
         insight: "Safer for sure, but we might miss out on big discoveries.",
-        stars: 2
+        stars: 2,
+        whyNot3Stars: "Being careful is smart! But what about all the good things smarter robots could do, like cure diseases? Maybe we can keep building them WITH safety rules?"
       }
     ]
   },
@@ -211,7 +221,8 @@ export const MODULES: Module[] = [
         title: "The Bubble",
         body: "It feels great to see only things you love! But here's the thing: you might start thinking EVERYONE loves cats because that's all you see. Your world becomes a bubble where everything seems the same. You might miss out on discovering you also love dogs!",
         insight: "Super fun, but your world gets smaller and smaller.",
-        stars: 2
+        stars: 2,
+        whyNot3Stars: "Cat videos are awesome! But what if you ALSO love dogs and you never find out? A little variety helps you discover new favorites!"
       },
       {
         title: "The Discovery Mix",
@@ -246,7 +257,8 @@ export const MODULES: Module[] = [
         title: "New Beginnings",
         body: "An eco-city sounds nice with its solar panels and parks. But a park isn't the same as a real forest! Those deer and butterflies need their REAL home with old trees and wild plants. When we say 'animals can move,' where exactly do they go?",
         insight: "Shiny new city, but homeless animals.",
-        stars: 2
+        stars: 2,
+        whyNot3Stars: "Eco-cities are cool! But those butterflies can't just pack up and move. What if we built a smaller city and kept their forest home too?"
       },
       {
         title: "Good Neighbors",
@@ -258,7 +270,8 @@ export const MODULES: Module[] = [
         title: "Forest Forever",
         body: "Keeping the whole forest means every single deer, bird, and butterfly keeps their home. The forest also cleans our air and gives us fresh water! But people who wanted to live in that nice eco-city will have to go somewhere else.",
         insight: "Happy animals, but humans need to find another spot.",
-        stars: 2
+        stars: 2,
+        whyNot3Stars: "You have a big heart for animals! But people need homes too. What if we could share the space - some forest for animals, some city for people?"
       }
     ]
   },
@@ -281,7 +294,8 @@ export const MODULES: Module[] = [
         title: "The Perfect Baby?",
         body: "Changing everything sounds cool, but think about it: what if only rich families can afford 'super babies'? And what makes someone 'perfect' anyway? Your freckles, your curly hair, your unique brain - those 'imperfections' are what make you YOU!",
         insight: "More 'perfect' babies, but is everyone's 'perfect' the same?",
-        stars: 2
+        stars: 2,
+        whyNot3Stars: "Being healthy and smart sounds great! But what makes someone 'perfect'? Your unique quirks are what make you special! Maybe just fix sickness and let the rest be a surprise?"
       },
       {
         title: "Healthy is Enough",
@@ -293,7 +307,8 @@ export const MODULES: Module[] = [
         title: "Nature Knows Best",
         body: "Letting babies be born naturally means embracing surprises - the good and the challenging. Some babies might have health problems, but they'll be exactly who nature intended. Sometimes our differences make us strongest!",
         insight: "Totally natural, but some health problems could have been prevented.",
-        stars: 2
+        stars: 2,
+        whyNot3Stars: "Nature is amazing! But what about babies who get really sick? If we could help them be healthy before they're born, wouldn't that be kind?"
       }
     ]
   },
@@ -316,7 +331,8 @@ export const MODULES: Module[] = [
         title: "Tiny but Risky",
         body: "These tiny robots could do amazing things! But because they're SO small, we can't really see what they do. What if they accidentally hurt good cells in your body or tiny animals in the ocean? Small things can cause big problems!",
         insight: "Amazing possibilities, but we can't take back what we don't understand.",
-        stars: 2
+        stars: 2,
+        whyNot3Stars: "You're excited about cool technology - that's great! But we should probably test these tiny robots first to make sure they're safe. What if we tried them in labs before using them everywhere?"
       },
       {
         title: "Test First, Wonder Later",
@@ -328,7 +344,8 @@ export const MODULES: Module[] = [
         title: "Wait and See",
         body: "Waiting means we don't get those cool benefits yet. But we also don't accidentally cause problems we can't fix. Sometimes being patient is the smartest thing to do, even when you're excited!",
         insight: "Super safe, but we have to wait longer for the cool stuff.",
-        stars: 2
+        stars: 2,
+        whyNot3Stars: "Being careful is wise! But some people are really sick and need help now. What if we tested the tiny robots carefully in special places first?"
       }
     ]
   },
@@ -351,7 +368,8 @@ export const MODULES: Module[] = [
         title: "Sky Experiment",
         body: "Spraying stuff in the sky MIGHT cool Earth down. But the sky is connected to everything - rain, wind, seasons. What if it messes up rain in one country while fixing heat in another? The sky doesn't follow borders!",
         insight: "Quick fix maybe, but nobody really knows what else could happen.",
-        stars: 2
+        stars: 2,
+        whyNot3Stars: "You want to help Earth cool down - that's awesome! But spraying stuff in the sky is a big experiment. What if we focused on making less pollution while scientists study this more?"
       },
       {
         title: "Fix the Real Problem",
@@ -363,7 +381,8 @@ export const MODULES: Module[] = [
         title: "Let Nature Heal",
         body: "Nature is really good at fixing itself... IF we stop hurting it! But healing takes a long time, and Earth is getting hot fast. Can we wait long enough for nature to recover on its own?",
         insight: "The safest choice, but maybe not fast enough.",
-        stars: 2
+        stars: 2,
+        whyNot3Stars: "You trust nature - that's beautiful! But Earth is getting hotter pretty fast. Maybe we could stop polluting AND study backup plans, just in case nature needs a little help?"
       }
     ]
   }

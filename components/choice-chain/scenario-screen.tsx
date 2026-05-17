@@ -19,55 +19,58 @@ export function ScenarioScreen({ module, onChoose, onBack }: ScenarioScreenProps
     if (selected !== null || revealing) return;
     setSelected(idx);
     setRevealing(true);
-    setTimeout(() => onChoose(idx), 1200);
+    setTimeout(() => onChoose(idx), 1500);
   };
 
   const choiceLabels = ["A", "B", "C"];
   const choiceColors = ["#f472b6", "#818cf8", "#38bdf8"];
+  const choiceIcons = ["🅰️", "🅱️", "©️"];
 
   return (
     <div
-      className="min-h-screen px-5 py-6 pb-12 font-sans relative overflow-hidden"
+      className="min-h-screen px-4 py-5 pb-12 font-sans relative overflow-hidden"
       style={{
         background: `linear-gradient(160deg, ${module.color[0]} 0%, ${module.color[1]} 100%)`,
       }}
     >
       <Particles color={module.accent} />
 
-      <div className="relative z-10">
+      <div className="relative z-10 max-w-lg mx-auto">
         {/* Back button */}
         <button
           onClick={onBack}
-          className="bg-transparent border-none text-sm cursor-pointer py-1 mb-4 flex items-center gap-2"
+          className="bg-transparent border-none text-sm cursor-pointer py-1 mb-3 flex items-center gap-2 hover:scale-105 transition-transform"
           style={{ color: "rgba(255,255,255,0.6)" }}
         >
-          <span>←</span> Back to Adventures
+          <span className="text-lg">🗺️</span> Back to Adventures
         </button>
 
-        {/* Character header */}
+        {/* Character header - bigger and more fun */}
         <FadeIn delay={0}>
-          <div className="flex items-center gap-3 mb-4">
+          <div 
+            className="rounded-3xl p-4 mb-4 flex items-center gap-4"
+            style={{
+              background: `${module.accent}15`,
+              border: `3px solid ${module.accent}40`,
+            }}
+          >
             <div
-              className="text-5xl p-3 rounded-2xl"
-              style={{
-                background: `${module.accent}20`,
-                border: `2px solid ${module.accent}40`,
-              }}
+              className="text-6xl animate-wiggle"
             >
               {module.characterEmoji}
             </div>
             <div>
               <div
-                className="text-lg font-bold"
+                className="text-xl font-bold font-serif"
                 style={{ color: module.accent }}
               >
                 {module.character}
               </div>
               <div
-                className="text-xs"
-                style={{ color: "rgba(255,255,255,0.6)" }}
+                className="text-sm flex items-center gap-1"
+                style={{ color: "rgba(255,255,255,0.7)" }}
               >
-                asks you a question...
+                <span>💭</span> has a question for you!
               </div>
             </div>
           </div>
@@ -76,33 +79,33 @@ export function ScenarioScreen({ module, onChoose, onBack }: ScenarioScreenProps
         {/* Title */}
         <FadeIn delay={150}>
           <h1
-            className="font-serif text-2xl font-bold m-0 mb-2 leading-tight"
+            className="font-serif text-2xl font-bold m-0 mb-1 leading-tight"
             style={{ color: "#fff" }}
           >
             {module.title}
           </h1>
           <p
-            className="text-sm m-0 mb-5 italic"
+            className="text-sm m-0 mb-4 italic flex items-center gap-1"
             style={{ color: "rgba(255,255,255,0.6)" }}
           >
-            {module.hook}
+            <span>🤔</span> {module.hook}
           </p>
         </FadeIn>
 
-        {/* Story/Scenario box */}
+        {/* Story/Scenario box - more visual */}
         <FadeIn delay={300}>
           <div
-            className="rounded-2xl p-5 mb-6"
+            className="rounded-3xl p-5 mb-5"
             style={{
               background: "rgba(255,255,255,0.08)",
-              border: "2px solid rgba(255,255,255,0.15)",
+              border: "3px solid rgba(255,255,255,0.15)",
               backdropFilter: "blur(8px)",
             }}
           >
-            <div className="flex gap-2 mb-3">
-              <span className="text-lg">📖</span>
+            <div className="flex gap-2 mb-3 items-center">
+              <span className="text-2xl">📖</span>
               <span
-                className="text-xs font-bold uppercase tracking-wider"
+                className="text-sm font-bold uppercase tracking-wider"
                 style={{ color: module.accent }}
               >
                 The Story
@@ -117,17 +120,23 @@ export function ScenarioScreen({ module, onChoose, onBack }: ScenarioScreenProps
           </div>
         </FadeIn>
 
-        {/* What do you think? */}
+        {/* What do you think? - bigger prompt */}
         <FadeIn delay={450}>
-          <p
-            className="text-sm font-bold mb-4 flex items-center gap-2"
-            style={{ color: "#fff" }}
+          <div 
+            className="flex items-center justify-center gap-2 mb-4 py-2"
           >
-            <span className="text-xl">🤔</span> What do YOU think?
-          </p>
+            <span className="text-2xl">🧠</span>
+            <p
+              className="text-lg font-bold m-0"
+              style={{ color: "#fff" }}
+            >
+              What do YOU think?
+            </p>
+            <span className="text-2xl">💭</span>
+          </div>
         </FadeIn>
 
-        {/* Choices */}
+        {/* Choices - bigger, more colorful */}
         <div className="flex flex-col gap-3">
           {module.choices.map((c, i) => {
             const isSelected = selected === i;
@@ -136,22 +145,22 @@ export function ScenarioScreen({ module, onChoose, onBack }: ScenarioScreenProps
               <FadeIn key={i} delay={550 + i * 100}>
                 <button
                   onClick={() => handleSelect(i)}
-                  className="w-full text-left p-4 rounded-2xl transition-all duration-300"
+                  className="w-full text-left p-4 rounded-3xl transition-all duration-300"
                   style={{
                     cursor: selected !== null ? "default" : "pointer",
-                    border: `2px solid ${isSelected ? choiceColors[i] : "rgba(255,255,255,0.15)"}`,
+                    border: `3px solid ${isSelected ? choiceColors[i] : "rgba(255,255,255,0.15)"}`,
                     background: isSelected
-                      ? `${choiceColors[i]}25`
+                      ? `linear-gradient(135deg, ${choiceColors[i]}30, ${choiceColors[i]}15)`
                       : "rgba(255,255,255,0.05)",
                     backdropFilter: "blur(12px)",
-                    opacity: isDimmed ? 0.3 : 1,
+                    opacity: isDimmed ? 0.25 : 1,
                     transform: isSelected ? "scale(1.02)" : "scale(1)",
-                    boxShadow: isSelected ? `0 0 30px ${choiceColors[i]}40` : "none",
+                    boxShadow: isSelected ? `0 0 40px ${choiceColors[i]}50` : "none",
                   }}
                 >
                   <div className="flex gap-3 items-start">
                     <span
-                      className="w-8 h-8 rounded-xl shrink-0 flex items-center justify-center text-sm font-bold transition-all duration-300"
+                      className="w-10 h-10 rounded-2xl shrink-0 flex items-center justify-center text-base font-bold transition-all duration-300"
                       style={{
                         background: isSelected
                           ? choiceColors[i]
@@ -163,7 +172,7 @@ export function ScenarioScreen({ module, onChoose, onBack }: ScenarioScreenProps
                       {choiceLabels[i]}
                     </span>
                     <p
-                      className="text-sm leading-relaxed m-0"
+                      className="text-sm leading-relaxed m-0 pt-1"
                       style={{
                         color: isSelected ? "#fff" : "rgba(255,255,255,0.85)",
                       }}
@@ -179,25 +188,34 @@ export function ScenarioScreen({ module, onChoose, onBack }: ScenarioScreenProps
 
         {/* Reveal overlay with fun animation */}
         {revealing && (
-          <div className="fixed inset-0 bg-black/70 z-50 flex flex-col items-center justify-center animate-fade-in">
-            <div
-              className="text-6xl mb-4 animate-bounce"
-            >
+          <div className="fixed inset-0 bg-black/80 z-50 flex flex-col items-center justify-center animate-fade-in">
+            <div className="text-7xl mb-4 animate-bounce">
               {module.characterEmoji}
             </div>
-            <p className="text-lg font-bold" style={{ color: "#fff" }}>
+            <div className="flex gap-2 mb-3">
+              {["⭐", "⭐", "⭐"].map((star, i) => (
+                <span 
+                  key={i} 
+                  className="text-3xl animate-pulse"
+                  style={{ animationDelay: `${i * 0.2}s` }}
+                >
+                  {star}
+                </span>
+              ))}
+            </div>
+            <p className="text-xl font-bold font-serif" style={{ color: "#fff" }}>
               Great choice!
             </p>
             <p className="text-sm" style={{ color: "rgba(255,255,255,0.6)" }}>
-              Let&apos;s see what happens...
+              Let&apos;s see how many stars you earned...
             </p>
             <div
-              className="mt-6 w-16 h-1 rounded-full overflow-hidden"
+              className="mt-6 w-24 h-2 rounded-full overflow-hidden"
               style={{ background: "rgba(255,255,255,0.2)" }}
             >
               <div
                 className="h-full rounded-full animate-loading"
-                style={{ background: module.accent }}
+                style={{ background: `linear-gradient(90deg, ${module.accent}, #fbbf24)` }}
               />
             </div>
           </div>
@@ -217,7 +235,14 @@ export function ScenarioScreen({ module, onChoose, onBack }: ScenarioScreenProps
           100% { width: 100%; }
         }
         .animate-loading {
-          animation: loading 1s ease-out forwards;
+          animation: loading 1.2s ease-out forwards;
+        }
+        @keyframes wiggle {
+          0%, 100% { transform: rotate(-5deg); }
+          50% { transform: rotate(5deg); }
+        }
+        .animate-wiggle {
+          animation: wiggle 1.5s ease-in-out infinite;
         }
       `}</style>
     </div>

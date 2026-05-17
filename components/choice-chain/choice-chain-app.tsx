@@ -12,6 +12,7 @@ type Screen = "home" | "modules" | "scenario" | "result";
 export interface PlayerProgress {
   completedModules: number[];
   totalStars: number;
+  moduleStars?: Record<number, number>;
 }
 
 export function ChoiceChainApp() {
@@ -32,13 +33,40 @@ export function ChoiceChainApp() {
     setChoiceIdx(idx);
     setScreen("result");
     
-    if (activeModule && !progress.completedModules.includes(activeModule.id)) {
+    if (activeModule) {
       const earnedStars = activeModule.feedback[idx].stars;
-      setProgress(prev => ({
-        completedModules: [...prev.completedModules, activeModule.id],
-        totalStars: prev.totalStars + earnedStars,
-      }));
+      const wasCompleted = progress.completedModules.includes(activeModule.id);
+      
+      if (!wasCompleted) {
+        // First time completing - add stars and track module stars
+        setProgress(prev => ({
+          completedModules: [...prev.completedModules, activeModule.id],
+          totalStars: prev.totalStars + earnedStars,
+          moduleStars: {
+            ...prev.moduleStars,
+            [activeModule.id]: earnedStars,
+          },
+        }));
+      } else if (earnedStars === 3) {
+        // Already completed but now got 3 stars - update total
+        const previousStars = progress.moduleStars?.[activeModule.id] || 2;
+        if (previousStars < 3) {
+          setProgress(prev => ({
+            ...prev,
+            totalStars: prev.totalStars + (3 - previousStars),
+            moduleStars: {
+              ...prev.moduleStars,
+              [activeModule.id]: 3,
+            },
+          }));
+        }
+      }
     }
+  };
+
+  const handleTryAgain = () => {
+    setChoiceIdx(null);
+    setScreen("scenario");
   };
 
   const goNext = () => {
@@ -83,6 +111,7 @@ export function ChoiceChainApp() {
         choiceIdx={choiceIdx}
         onNext={goNext}
         onMenu={() => setScreen("modules")}
+        onTryAgain={handleTryAgain}
         isLast={activeModule.id === 10}
         progress={progress}
       />

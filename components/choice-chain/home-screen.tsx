@@ -21,45 +21,73 @@ export function HomeScreen({ onStart, progress }: HomeScreenProps) {
     >
       <Particles color="#fbbf24" />
 
+      {/* Fun floating icons in background */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {["💭", "✨", "🌟", "💡", "🎯", "🧩"].map((icon, i) => (
+          <span
+            key={i}
+            className="absolute text-3xl opacity-20"
+            style={{
+              left: `${10 + (i * 15)}%`,
+              top: `${20 + (i * 10)}%`,
+              animation: `float-bg ${4 + i}s ease-in-out infinite`,
+              animationDelay: `${i * 0.5}s`,
+            }}
+          >
+            {icon}
+          </span>
+        ))}
+      </div>
+
       {/* Bouncing mascot */}
       <FadeIn delay={0} className="relative z-10">
-        <div
-          className="text-7xl mb-4 animate-bounce-slow"
-          style={{ 
-            filter: "drop-shadow(0 0 20px rgba(251,191,36,0.5))",
-          }}
-        >
-          🎮
+        <div className="relative">
+          <div
+            className="text-8xl mb-2 animate-bounce-slow"
+            style={{ 
+              filter: "drop-shadow(0 0 30px rgba(251,191,36,0.5))",
+            }}
+          >
+            🎮
+          </div>
+          {/* Sparkles around mascot */}
+          <span className="absolute -top-2 -right-2 text-2xl animate-pulse">✨</span>
+          <span className="absolute -bottom-1 -left-2 text-xl animate-pulse" style={{ animationDelay: "0.5s" }}>⭐</span>
         </div>
       </FadeIn>
 
       <FadeIn delay={200} className="relative z-10">
         <h1
-          className="font-serif font-bold text-4xl md:text-5xl tracking-wide mb-2"
+          className="font-serif font-bold text-5xl md:text-6xl tracking-wide mb-3"
           style={{
-            background: "linear-gradient(135deg, #fbbf24, #f472b6, #818cf8)",
-            backgroundSize: "200%",
+            background: "linear-gradient(135deg, #fbbf24, #f472b6, #818cf8, #38bdf8)",
+            backgroundSize: "300%",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
-            animation: "shimmer 3s linear infinite",
+            animation: "shimmer 4s linear infinite",
+            textShadow: "0 0 40px rgba(251,191,36,0.3)",
           }}
         >
           Choice Chain
         </h1>
-        <p
-          className="text-lg font-medium mb-1"
-          style={{ color: "#fbbf24" }}
+        <div 
+          className="inline-block px-4 py-1 rounded-full text-sm font-bold mb-2"
+          style={{
+            background: "linear-gradient(135deg, rgba(251,191,36,0.2), rgba(244,114,182,0.2))",
+            border: "2px solid rgba(251,191,36,0.4)",
+            color: "#fbbf24",
+          }}
         >
           The Big Decision Game!
-        </p>
+        </div>
       </FadeIn>
 
       <FadeIn delay={400} className="relative z-10">
         <p
-          className="font-sans text-base mb-6 max-w-xs"
-          style={{ color: "rgba(255,255,255,0.8)" }}
+          className="font-sans text-lg mb-6 max-w-sm leading-relaxed"
+          style={{ color: "rgba(255,255,255,0.85)" }}
         >
-          Make choices, learn cool stuff, and discover what kind of thinker you are!
+          Make choices, earn stars, and discover how YOUR brain thinks about big questions!
         </p>
       </FadeIn>
 
@@ -67,82 +95,96 @@ export function HomeScreen({ onStart, progress }: HomeScreenProps) {
       {progress.totalStars > 0 && (
         <FadeIn delay={500} className="relative z-10">
           <div
-            className="px-5 py-3 rounded-2xl mb-6 flex items-center gap-3"
+            className="px-6 py-4 rounded-3xl mb-6 flex items-center gap-4"
             style={{
-              background: "rgba(251,191,36,0.15)",
-              border: "2px solid rgba(251,191,36,0.3)",
+              background: "linear-gradient(135deg, rgba(251,191,36,0.2), rgba(251,191,36,0.1))",
+              border: "3px solid rgba(251,191,36,0.4)",
+              boxShadow: "0 0 30px rgba(251,191,36,0.2)",
             }}
           >
-            <span className="text-2xl">⭐</span>
+            <div className="text-4xl">🏆</div>
             <div className="text-left">
-              <div className="text-xl font-bold" style={{ color: "#fbbf24" }}>
-                {progress.totalStars} Stars
+              <div className="text-2xl font-bold" style={{ color: "#fbbf24" }}>
+                {progress.totalStars} Stars!
               </div>
-              <div className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>
-                {progress.completedModules.length}/10 Adventures Done!
+              <div className="text-sm" style={{ color: "rgba(255,255,255,0.7)" }}>
+                {progress.completedModules.length}/10 Adventures Done
               </div>
             </div>
           </div>
         </FadeIn>
       )}
 
-      <FadeIn delay={600} className="relative z-10 w-full max-w-xs">
+      <FadeIn delay={600} className="relative z-10 w-full max-w-sm">
         <button
           onClick={onStart}
-          className="w-full py-4 rounded-2xl text-lg font-bold tracking-wide cursor-pointer transition-all active:scale-95 hover:scale-105"
+          className="w-full py-5 rounded-3xl text-xl font-bold tracking-wide cursor-pointer transition-all active:scale-95 hover:scale-105 flex items-center justify-center gap-3"
           style={{
             background: "linear-gradient(135deg, #f472b6, #818cf8, #38bdf8)",
-            boxShadow: "0 8px 32px rgba(244,114,182,0.4), 0 0 60px rgba(129,140,248,0.2)",
+            boxShadow: "0 8px 40px rgba(244,114,182,0.4), 0 0 80px rgba(129,140,248,0.2)",
             color: "white",
-            border: "none",
+            border: "3px solid rgba(255,255,255,0.3)",
           }}
         >
-          {progress.completedModules.length > 0 ? "Continue Adventure!" : "Start Adventure!"}
+          <span className="text-2xl">🚀</span>
+          {progress.completedModules.length > 0 ? "Keep Playing!" : "Let's Go!"}
+          <span className="text-2xl">🌟</span>
         </button>
       </FadeIn>
 
       {/* Character parade */}
       <FadeIn delay={800} className="relative z-10">
-        <div className="mt-6 flex gap-2 justify-center">
+        <p
+          className="text-sm mt-8 mb-3 font-medium"
+          style={{ color: "rgba(255,255,255,0.6)" }}
+        >
+          Meet your adventure friends:
+        </p>
+        <div className="flex gap-3 justify-center flex-wrap max-w-xs">
           {characters.map((emoji, i) => (
-            <span
+            <div
               key={i}
-              className="text-2xl transition-transform hover:scale-125 cursor-default"
-              style={{
-                opacity: progress.completedModules.includes(i + 1) ? 1 : 0.4,
-                filter: progress.completedModules.includes(i + 1) ? "none" : "grayscale(0.5)",
-                animation: `float ${2 + (i * 0.2)}s ease-in-out infinite`,
-                animationDelay: `${i * 0.1}s`,
-              }}
-              title={progress.completedModules.includes(i + 1) ? "Completed!" : "Not yet explored"}
+              className="relative"
             >
-              {emoji}
-            </span>
+              <span
+                className="text-3xl block transition-transform hover:scale-125 cursor-default"
+                style={{
+                  opacity: progress.completedModules.includes(i + 1) ? 1 : 0.35,
+                  filter: progress.completedModules.includes(i + 1) ? "none" : "grayscale(0.6)",
+                  animation: `float ${2 + (i * 0.2)}s ease-in-out infinite`,
+                  animationDelay: `${i * 0.1}s`,
+                }}
+                title={progress.completedModules.includes(i + 1) ? "Completed!" : "Not yet explored"}
+              >
+                {emoji}
+              </span>
+              {progress.completedModules.includes(i + 1) && (
+                <span className="absolute -top-1 -right-1 text-xs">⭐</span>
+              )}
+            </div>
           ))}
         </div>
-        <p
-          className="text-xs mt-3"
-          style={{ color: "rgba(255,255,255,0.4)" }}
-        >
-          Meet the friends who will teach you!
-        </p>
       </FadeIn>
 
       <style jsx>{`
         @keyframes shimmer {
-          0% { background-position: -200% center; }
-          100% { background-position: 200% center; }
+          0% { background-position: -300% center; }
+          100% { background-position: 300% center; }
         }
         @keyframes float {
           0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-6px); }
+          50% { transform: translateY(-8px); }
+        }
+        @keyframes float-bg {
+          0%, 100% { transform: translateY(0) rotate(0deg); }
+          50% { transform: translateY(-20px) rotate(10deg); }
         }
         .animate-bounce-slow {
           animation: bounce-slow 2s ease-in-out infinite;
         }
         @keyframes bounce-slow {
           0%, 100% { transform: translateY(0) rotate(-5deg); }
-          50% { transform: translateY(-15px) rotate(5deg); }
+          50% { transform: translateY(-20px) rotate(5deg); }
         }
       `}</style>
     </div>
