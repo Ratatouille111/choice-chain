@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Particles } from "./particles";
 import { FadeIn } from "./fade-in";
 import { type Module } from "@/lib/modules-data";
+import { sounds } from "@/lib/sounds";
 
 interface ScenarioScreenProps {
   module: Module;
@@ -17,9 +18,15 @@ export function ScenarioScreen({ module, onChoose, onBack }: ScenarioScreenProps
 
   const handleSelect = (idx: number) => {
     if (selected !== null || revealing) return;
+    sounds.choose();
     setSelected(idx);
     setRevealing(true);
     setTimeout(() => onChoose(idx), 1500);
+  };
+
+  const handleBack = () => {
+    sounds.back();
+    onBack();
   };
 
   const choiceLabels = ["A", "B", "C"];
@@ -38,7 +45,7 @@ export function ScenarioScreen({ module, onChoose, onBack }: ScenarioScreenProps
       <div className="relative z-10 max-w-lg mx-auto">
         {/* Back button */}
         <button
-          onClick={onBack}
+          onClick={handleBack}
           className="bg-transparent border-none text-sm cursor-pointer py-1 mb-3 flex items-center gap-2 hover:scale-105 transition-transform"
           style={{ color: "rgba(255,255,255,0.6)" }}
         >

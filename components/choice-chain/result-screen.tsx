@@ -5,6 +5,7 @@ import { Particles } from "./particles";
 import { FadeIn } from "./fade-in";
 import { type Module } from "@/lib/modules-data";
 import type { PlayerProgress } from "./choice-chain-app";
+import { sounds } from "@/lib/sounds";
 
 interface ResultScreenProps {
   module: Module;
@@ -48,6 +49,34 @@ export function ResultScreen({
       return () => clearTimeout(timer);
     }
   }, [showStars, starCount, fb.stars]);
+
+  // Play sound when stars animate in
+  useEffect(() => {
+    if (showStars && starCount > 0 && starCount <= fb.stars) {
+      // Play different sounds based on which star appears
+      if (starCount === fb.stars) {
+        // Final star - play the full star sound
+        if (fb.stars === 3) sounds.star3();
+        else if (fb.stars === 2) sounds.star2();
+        else sounds.star1();
+      }
+    }
+  }, [showStars, starCount, fb.stars]);
+
+  const handleTryAgain = () => {
+    sounds.tryAgain();
+    onTryAgain();
+  };
+
+  const handleMenu = () => {
+    sounds.back();
+    onMenu();
+  };
+
+  const handleNext = () => {
+    sounds.next();
+    onNext();
+  };
 
   const encouragements3Stars = [
     "WOW! Amazing thinking!",
@@ -200,7 +229,7 @@ export function ResultScreen({
         {!got3Stars && showContent && (
           <FadeIn delay={100}>
             <button
-              onClick={onTryAgain}
+              onClick={handleTryAgain}
               className="w-full py-4 rounded-2xl text-base font-bold cursor-pointer transition-all active:scale-95 hover:scale-[1.02] mb-5 flex items-center justify-center gap-3"
               style={{
                 background: "linear-gradient(135deg, #fbbf24, #f59e0b)",
@@ -327,7 +356,7 @@ export function ResultScreen({
           <FadeIn delay={got3Stars ? 400 : 600}>
             <div className="flex gap-3">
               <button
-                onClick={onMenu}
+                onClick={handleMenu}
                 className="flex-1 py-3.5 rounded-xl text-sm font-bold cursor-pointer transition-all active:scale-95 flex items-center justify-center gap-2"
                 style={{
                   background: "rgba(255,255,255,0.08)",
@@ -339,7 +368,7 @@ export function ResultScreen({
               </button>
               {!isLast && (
                 <button
-                  onClick={onNext}
+                  onClick={handleNext}
                   className="flex-[2] py-3.5 rounded-xl text-sm font-bold cursor-pointer transition-all active:scale-95 hover:scale-[1.02] flex items-center justify-center gap-2"
                   style={{
                     background: `linear-gradient(135deg, ${module.accent}, ${module.color[1]})`,
@@ -353,7 +382,10 @@ export function ResultScreen({
               )}
               {isLast && (
                 <button
-                  onClick={onMenu}
+                  onClick={() => {
+                    sounds.complete();
+                    onMenu();
+                  }}
                   className="flex-[2] py-3.5 rounded-xl text-sm font-bold cursor-pointer transition-all active:scale-95 flex items-center justify-center gap-2"
                   style={{
                     background: "linear-gradient(135deg, #fbbf24, #f472b6)",
